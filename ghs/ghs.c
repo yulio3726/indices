@@ -19,12 +19,13 @@ Index build(char *dbname, int n, int *argc, char ***argv){
     
     int i;
     int dimension;
-    int l = 1000; //es la muestra que se selecciona para saber como divide el espacio
-    int nVeces = 40;//Por
+    int l = 2000; //es la muestra que se selecciona para saber como divide el espacio
+    int nVeces = 400;//Por
     int k = 10;
     int posicion;
     int nObjetoConsulta = 100;
-    int porcentaje[] = { 1, 3, 5, 9};
+    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
     int j;
 
     Obj *objetosConsulta;
@@ -180,8 +181,8 @@ Index build(char *dbname, int n, int *argc, char ***argv){
     generaConsultas(objetosConsulta, nObjetoConsulta, S -> nBD);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
-    printf("\nevaluando\n");
-    for(i = 0; i < 4; i++){
+    //printf("\nevaluando\n");
+    for(i = 0; i < nPorcentaje; i++){
 
         sumaRecall = 0;
 
@@ -368,6 +369,7 @@ void muestraPivotes(ghs* S){
 float kNN(ghs* S, int k, int porcentaje, Obj q){
 
     consulta *distanciaHamming = NULL;
+    //consulta *distanciaHamming2 = NULL;
 
     consultaReal* distanciaRealAprox = NULL;
     consultaReal *distanciaReal = NULL;
@@ -389,10 +391,14 @@ float kNN(ghs* S, int k, int porcentaje, Obj q){
 
     generaSketch(&sQ, q, S -> pivots, S -> nHiperplanos);
 
-    printf("\nya genere sketche\n");
+    //printf("\nya genere sketches\n");
+    //printf("\ntamaño de la bd %d\n", S -> nBD);
 
     distanciaHamming = ( consulta* ) malloc( sizeof(consulta) * S -> nBD);
-    printf("\nya estoy por aca\n");
+
+    //distanciaHamming2 = ( consulta* ) malloc( sizeof(consulta) * S -> nBD);
+    //printf("\nya estoy por aca\n");
+    //printf("\n otra impresion\n");
 
     for( i = 0 ;i < S -> nBD; i++){
 

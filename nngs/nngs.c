@@ -26,7 +26,8 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     int nObjetoConsulta = 100;
 
     //int porcentaje[] = { 3, 5, 10, 15, 20, 23};
-    int porcentaje[] = { 3, 5, 10, 15, 20, 23};
+    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nProcentaje = 5;
 
     Obj *objetosConsulta;
     Obj u;
@@ -106,8 +107,8 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     mCeros(G);
     //construyeMHeuristica1(G); //seleccionar valores en el intervalo [1,0]
     //construyeMHeuristica2(G); //seleccionar valores en (0 y 1)
-    construyeMHeuristica3(G);
-    //construyeMHeuristica4(G);
+    //construyeMHeuristica3(G); //ninimo m/2 unos por renglon
+    construyeMHeuristica4(G);//el min de {m/2. log(n)+ log(m/2)}
 
     //muestraM(G);
     //return (Index) G;
@@ -218,7 +219,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
   //  printf("\n\n/**************************************/\n");
    // printf("calculo de precicion\n\n");
 
-   /* for(i = 0; i < 6; i++){
+    for(i = 0; i < nProcentaje; i++){
 
         sumaRecall = 0;
 
@@ -231,9 +232,9 @@ Index build (char *dbname, int n, int *argc, char ***argv){
         printf("\n");
 
         printf("\t %d Promedio recall %f\n\n", porcentaje[i], sumaRecall/nObjetoConsulta);
-    }*/
+    }
 
-    sumaRecall = 0;
+/*    sumaRecall = 0;
 
     for(j = 0; j < nObjetoConsulta; j++){//
         // printf("\n objeto consulta %d se  evalua el porcentaje %d\n", objetosConsulta[j], porcentaje[i]);
@@ -244,7 +245,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     printf("\n");
 
     printf("\t %d Promedio recall %f\n\n", porcentaje[2], sumaRecall/nObjetoConsulta);
-
+*/
 
     free(G);
     //printf("ya libere\n");
@@ -413,7 +414,7 @@ float kNN(swe* G, int k, int porcentaje, Obj q){
             dist = dist + hamming( sQ.sketchesPart10 , G -> sketchesPart10[i]);
 
         distanciaHamming[i].distanciaQ = dist;
-        distanciaHamming[i].o = i+1;
+        distanciaHamming[i].o = i + 1;
 
         //printf("objeto %d distancia %d\n", distanciaHamming[i].o, distanciaHamming[i].distanciaQ);
 

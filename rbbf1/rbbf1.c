@@ -20,7 +20,8 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     int k = 10;
     int posicion;
     int nObjetoConsulta = 100;
-    int porcentaje[] = { 1, 3, 5, 9};
+    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
     int j;
 
     Obj *objetosConsulta;
@@ -176,7 +177,7 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
-    for(i = 0; i < 4; i++){ //para que revise todos los porcentajes
+    for(i = 0; i < nPorcentaje; i++){ //para que revise todos los porcentajes
         //printf("reviso el porcentaje %d\n", porcentaje[i]);
         sumaRecall = 0;
 
