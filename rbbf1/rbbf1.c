@@ -94,25 +94,25 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
         i++;
         u = i;
 
-        G->sketches[u] = 0;
+            G -> sketches[u-1] = 0;
         if (G->nHiperPlanos > 32)
-            G->sketchesPart2[u] = 0;
+            G->sketchesPart2[u-1] = 0;
         if (G->nHiperPlanos > 64)
-            G->sketchesPart3[u] = 0;
+            G->sketchesPart3[u-1] = 0;
         if (G->nHiperPlanos > 96)
-            G->sketchesPart4[u] = 0;
+            G->sketchesPart4[u-1] = 0;
         if (G->nHiperPlanos > 128)
-            G->sketchesPart5[u] = 0;
+            G->sketchesPart5[u-1] = 0;
         if (G->nHiperPlanos > 160)
-            G->sketchesPart6[u] = 0;
+            G->sketchesPart6[u-1] = 0;
         if (G->nHiperPlanos > 192)
-            G->sketchesPart7[u] = 0;
+            G->sketchesPart7[u-1] = 0;
         if (G->nHiperPlanos > 224)
-            G->sketchesPart8[u] = 0;
+            G->sketchesPart8[u-1] = 0;
         if (G->nHiperPlanos > 256)
-            G->sketchesPart9[u] = 0;
+            G->sketchesPart9[u-1] = 0;
         if (G->nHiperPlanos > 288)
-            G->sketchesPart10[u] = 0;
+            G->sketchesPart10[u-1] = 0;
 
         for (dimension = 0; dimension < G->nHiperPlanos; dimension++) {
 
@@ -175,9 +175,9 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
-    printf("Empiezan las consultas\n");
+    //printf("Empiezan las consultas\n");
     objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta); //se seleccionana los objetos para la consulta
-    printf("Se reservan los espacios para los objetos de las consultas\n");
+    //printf("Se reservan los espacios para los objetos de las consultas\n");
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
@@ -196,10 +196,10 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
         printf("\t %d Promedio recall %f\n", porcentaje[i], sumaRecall/nObjetoConsulta);
     }
 
-    //free(G -> sketches);
-    //free(G -> pivots);
+    free(G -> sketches);
+    free(G -> pivots);
     free(G);
-    //closeDB();
+    closeDB();
 
     return (Index) G;
 
@@ -300,9 +300,9 @@ float kNN(rbbf1* G, int k, int porcentaje, Obj q){
 
     generaSketch( &sQ, q, G -> pivots, G -> nHiperPlanos);
 
-    printf("\nestoy por aca\n el numero de objetos que quiero es del %d\n", G -> nBaseDatos);
+    //printf("\nestoy por aca\n el numero de objetos que quiero es del %d\n", G -> nBaseDatos);
     distanciaHamming = (consulta *) malloc( sizeof(consulta)* G -> nBaseDatos);
-    printf("ya termine\n");
+    //printf("ya termine\n");
 
     /*se calculan todas las distancia de hamming cd q hacia todos los objetos*/
     for( i = 0 ;i < G -> nBaseDatos; i++){
