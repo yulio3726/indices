@@ -21,7 +21,8 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     int k = 10;
     int posicion;
     int nObjetoConsulta = 100;
-    int porcentaje[] = { 1, 3, 5, 9};
+    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
     int j;
 
     Obj *objetosConsulta;
@@ -92,25 +93,25 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
         i++;
         u = i;
 
-        G->sketches[u] = 0;
+        G->sketches[u-1] = 0;
         if (G->nHiperPlanos > 32)
-            G->sketchesPart2[u] = 0;
+            G->sketchesPart2[u-1] = 0;
         if (G->nHiperPlanos > 64)
-            G->sketchesPart3[u] = 0;
+            G->sketchesPart3[u-1] = 0;
         if (G->nHiperPlanos > 96)
-            G->sketchesPart4[u] = 0;
+            G->sketchesPart4[u-1] = 0;
         if (G->nHiperPlanos > 128)
-            G->sketchesPart5[u] = 0;
+            G->sketchesPart5[u-1] = 0;
         if (G->nHiperPlanos > 160)
-            G->sketchesPart6[u] = 0;
+            G->sketchesPart6[u-1] = 0;
         if (G->nHiperPlanos > 192)
-            G->sketchesPart7[u] = 0;
+            G->sketchesPart7[u-1] = 0;
         if (G->nHiperPlanos > 224)
-            G->sketchesPart8[u] = 0;
+            G->sketchesPart8[u-1] = 0;
         if (G->nHiperPlanos > 256)
-            G->sketchesPart9[u] = 0;
+            G->sketchesPart9[u-1] = 0;
         if (G->nHiperPlanos > 288)
-            G->sketchesPart10[u] = 0;
+            G->sketchesPart10[u-1] = 0;
 
         for (dimension = 0; dimension < G->nHiperPlanos; dimension++) {
 
@@ -173,10 +174,11 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
-    objetosConsulta = (Obj *) malloc( sizeof (Obj) * n);
+    objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta);
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
 
-    for(i = 0; i < 4; i++){
+    //printf("empiezan las consultas");
+    for(i = 0; i < nPorcentaje; i++){
 
         sumaRecall = 0;
 
