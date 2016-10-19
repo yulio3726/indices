@@ -9,7 +9,7 @@
 
 typedef struct {
 
-    Obj o;
+    Obj o; //tenia tipo Obj
     int distanciaQ;
 
 }consulta;
@@ -63,7 +63,6 @@ typedef struct{
 }sketchQ;
 
 /*definiciones*/
-float kNN(rbbf1* S, int k, int porcentaje, Obj q);
 
 
 /* Funciones */

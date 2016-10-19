@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "rbbf1.h"
 
+float kNN(rbbf1* S, int k, int porcentaje, Obj q);
+
 Index build (char *dbname, int n, int *argc, char ***argv) {
 
     if (*argc < 1) {
@@ -173,9 +175,12 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
-    objetosConsulta = (Obj *) malloc( sizeof (Obj) * n); //se seleccionana los objetos para la consulta
+    printf("Empiezan las consultas\n");
+    objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta); //se seleccionana los objetos para la consulta
+    printf("Se reservan los espacios para los objetos de las consultas\n");
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
+
 
     for(i = 0; i < nPorcentaje; i++){ //para que revise todos los porcentajes
         //printf("reviso el porcentaje %d\n", porcentaje[i]);
@@ -191,10 +196,10 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
         printf("\t %d Promedio recall %f\n", porcentaje[i], sumaRecall/nObjetoConsulta);
     }
 
-    free(G -> sketches);
-    free(G -> pivots);
+    //free(G -> sketches);
+    //free(G -> pivots);
     free(G);
-    closeDB();
+    //closeDB();
 
     return (Index) G;
 
@@ -271,7 +276,7 @@ void freeIndex (Index S, bool libobj){
 }
 
 
-float kNN(rbbf1* S, int k, int porcentaje, Obj q){
+float kNN(rbbf1* G, int k, int porcentaje, Obj q){
 
     consulta *distanciaHamming = NULL;
 
@@ -280,7 +285,6 @@ float kNN(rbbf1* S, int k, int porcentaje, Obj q){
 
     int kPorcentaje;
     int i;
-    int rep;
     int interseccion = 0;
     int objetivo = 0;
 
@@ -294,59 +298,61 @@ float kNN(rbbf1* S, int k, int porcentaje, Obj q){
 
     Tdist dist;
 
-    generaSketch( &sQ, q, S -> pivots, S -> nHiperPlanos);
+    generaSketch( &sQ, q, G -> pivots, G -> nHiperPlanos);
 
-    distanciaHamming = ( consulta* ) malloc( sizeof(consulta) * S -> nBaseDatos);
+    printf("\nestoy por aca\n el numero de objetos que quiero es del %d\n", G -> nBaseDatos);
+    distanciaHamming = (consulta *) malloc( sizeof(consulta)* G -> nBaseDatos);
+    printf("ya termine\n");
 
     /*se calculan todas las distancia de hamming cd q hacia todos los objetos*/
-    for( i = 0 ;i < S -> nBaseDatos; i++){
+    for( i = 0 ;i < G -> nBaseDatos; i++){
 
-        dist = hamming( sQ.sketches , S -> sketches[i]);//el que se calcula por defecto
+        dist = hamming( sQ.sketches , G -> sketches[i]);//el que se calcula por defecto
 
-        if( S -> nHiperPlanos > 32 )
-            dist = dist + hamming( sQ.sketchesPart2 , S -> sketchesPart2[i]);
+        if( G -> nHiperPlanos > 32 )
+            dist = dist + hamming( sQ.sketchesPart2 , G -> sketchesPart2[i]);
 
-        if( S -> nHiperPlanos > 64 )
-             dist = dist + hamming( sQ.sketchesPart3 , S -> sketchesPart3[i]);
+        if( G -> nHiperPlanos > 64 )
+             dist = dist + hamming( sQ.sketchesPart3 , G -> sketchesPart3[i]);
 
-        if( S -> nHiperPlanos > 96 )
-            dist = dist + hamming( sQ.sketchesPart4 , S -> sketchesPart4[i]);
+        if( G -> nHiperPlanos > 96 )
+            dist = dist + hamming( sQ.sketchesPart4 , G -> sketchesPart4[i]);
 
-        if( S -> nHiperPlanos > 128 )
-            dist = dist + hamming( sQ.sketchesPart5 , S -> sketchesPart5[i]);
+        if( G -> nHiperPlanos > 128 )
+            dist = dist + hamming( sQ.sketchesPart5 , G -> sketchesPart5[i]);
 
-        if( S -> nHiperPlanos > 160 )
-            dist = dist + hamming( sQ.sketchesPart6 , S -> sketchesPart6[i]);
+        if( G -> nHiperPlanos > 160 )
+            dist = dist + hamming( sQ.sketchesPart6 , G -> sketchesPart6[i]);
 
-        if( S -> nHiperPlanos > 192 )
-            dist = dist + hamming( sQ.sketchesPart7 , S -> sketchesPart7[i]);
+        if( G -> nHiperPlanos > 192 )
+            dist = dist + hamming( sQ.sketchesPart7 , G -> sketchesPart7[i]);
 
-        if( S -> nHiperPlanos > 224 )
-            dist = dist + hamming( sQ.sketchesPart8 , S -> sketchesPart8[i]);
+        if( G -> nHiperPlanos > 224 )
+            dist = dist + hamming( sQ.sketchesPart8 , G -> sketchesPart8[i]);
 
-        if( S -> nHiperPlanos > 256 )
-            dist = dist + hamming( sQ.sketchesPart9 , S -> sketchesPart9[i]);
+        if( G -> nHiperPlanos > 256 )
+            dist = dist + hamming( sQ.sketchesPart9 , G -> sketchesPart9[i]);
 
-        if( S -> nHiperPlanos > 288 )
-            dist = dist + hamming( sQ.sketchesPart10 , S -> sketchesPart10[i]);
+        if( G -> nHiperPlanos > 288 )
+            dist = dist + hamming( sQ.sketchesPart10 , G -> sketchesPart10[i]);
 
         distanciaHamming[i].distanciaQ = dist;
         distanciaHamming[i].o = i+1;
 
     }
 
-    qsort( distanciaHamming, S -> nBaseDatos, sizeof( consulta ) , cmpfunc); //se ordenan las distancias de hammign entre el objeto q y ui
+    qsort( distanciaHamming, G -> nBaseDatos, sizeof( consulta ) , cmpfunc); //se ordenan las distancias de hammign entre el objeto q y ui
 
-    kPorcentaje = porcentaje * (S -> nBaseDatos / 100) ; //se calcula el nemero de objetos a revisar
+    kPorcentaje = porcentaje * (G -> nBaseDatos / 100) ; //se calcula el nemero de objetos a revisar
 
     distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
     workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming); // se calculan las distancias reales entre los objetos propuestos y la consulta
     qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
 
-    distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * S -> nBaseDatos);
-    calculaDistanciaReal(distanciaReal, S -> nBaseDatos, q);
+    distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * G -> nBaseDatos);
+    calculaDistanciaReal(distanciaReal, G -> nBaseDatos, q);
 
-    qsort( distanciaReal, S -> nBaseDatos, sizeof( consultaReal ) , cmpfuncFloat);;
+    qsort( distanciaReal, G -> nBaseDatos, sizeof( consultaReal ) , cmpfuncFloat);;
 
     kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
     kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
