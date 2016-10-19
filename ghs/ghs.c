@@ -95,25 +95,25 @@ Index build(char *dbname, int n, int *argc, char ***argv){
         i++;
         u = i;
 
-        S -> sketches[u] = 0;
+        S -> sketches[u-1] = 0;
         if (S -> nHiperplanos > 32)
-            S -> sketchesPart2[u] = 0;
+            S -> sketchesPart2[u-1] = 0;
         if (S -> nHiperplanos > 64)
-            S -> sketchesPart3[u] = 0;
+            S -> sketchesPart3[u-1] = 0;
         if (S -> nHiperplanos > 96)
-            S -> sketchesPart4[u] = 0;
+            S -> sketchesPart4[u-1] = 0;
         if (S -> nHiperplanos > 128)
-            S -> sketchesPart5[u] = 0;
+            S -> sketchesPart5[u-1] = 0;
         if (S -> nHiperplanos > 160)
-            S -> sketchesPart6[u] = 0;
+            S -> sketchesPart6[u-1] = 0;
         if (S -> nHiperplanos > 192)
-            S -> sketchesPart7[u] = 0;
+            S -> sketchesPart7[u-1] = 0;
         if (S -> nHiperplanos > 224)
-            S -> sketchesPart8[u] = 0;
+            S -> sketchesPart8[u-1] = 0;
         if (S -> nHiperplanos > 256)
-            S -> sketchesPart9[u] = 0;
+            S -> sketchesPart9[u-1] = 0;
         if (S -> nHiperplanos > 288)
-            S -> sketchesPart10[u] = 0;
+            S -> sketchesPart10[u-1] = 0;
 
 
         for( dimension = 0; dimension < S -> nHiperplanos; dimension++){
