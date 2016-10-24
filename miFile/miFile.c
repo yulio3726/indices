@@ -14,6 +14,8 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     miFile *I;
 
+    Tdist **tablaTemporal;
+
     I = malloc( sizeof( miFile ) );
 
     I -> descr = malloc(strlen (dbname) + 1);
@@ -25,8 +27,11 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     I -> nPivotes = atoi(*argv[0]); (*argc)--; (*argv)++;
 
     I -> pivotes = malloc( sizeof(Obj) * I -> nPivotes );
-    seleccionaPivotesAleatorio(I);
-    //muestraPivotes(I);
+    seleccionaPivotesAleatorio(I -> pivotes, I -> nPivotes, I -> np);
+    muestraPivotes(I -> pivotes, I -> nPivotes);
+
+    construyeTablaDistancias(tablaTemporal, I -> nPivotes, I -> np, I -> pivotes);
+
 
     free(I);
     closeDB();

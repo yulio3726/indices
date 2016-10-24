@@ -20,8 +20,6 @@ typedef struct{
     int np; //tamaño de la base de datos
     int nPivotes;
 
-    Tdist **tabla;
-
 }miFile;
 
 #endif //MIFILE_MIFILE_H
