@@ -31,23 +31,18 @@ void muestraPivotes(Obj* pivotes, int n){
     }
 }
 
-void construyeTablaDistancias(Tdist** tabla, int columnas, int filas, Obj* pivotes){  //colummnas = nPivotes  // filas = np
+void construyeTablaDistancias(Tdist** tablaTemporal, int columnas, int filas, Obj* pivotes){  //colummnas = nPivotes  // filas = np
 
     int i;
     int j;
 
-    tabla = (Tdist**) malloc( sizeof( Tdist* ) * filas);
-    for(i = 0; i < filas; i++){
-        tabla[i] = (Tdist*) malloc( sizeof(Tdist) * columnas);
-    }
-
     for(i = 0; i < filas; i++){
         for(j = 0; j < columnas; j++){
-            tabla[i][j] = distance(i,pivotes[j]);
+            tablaTemporal[i][j] = distance(i,pivotes[j]);
         }
     }
 
-   // muestraTablaflotante(tabla, columnas, filas);
+   // muestraTablaflotante(tablaTemporal, columnas, filas);
 
 }
 
@@ -64,5 +59,66 @@ void muestraTablaflotante(Tdist** tabla, int columnas, int filas){
     }
 }
 
+void copiaArregloTemporal(Tdist** tabla, int filaCopiar, int columnas, arregloTemporal* temporal){
+
+    int i;
+
+    for(i = 0; i < columnas; i++){
+        temporal[i].distancia = tabla[filaCopiar][i];
+        temporal[i].indice = i;
+    }
+}
+
+void muestraArregloTemporal(arregloTemporal* temporal, int n){
+
+    int i;
+
+    for(i = 0; i < n; i++){
+        printf(" %f %d\n", temporal[i].distancia, temporal[i].indice);
+    }
+
+}
+
+int cmpFloat(const void *a, const void *b){
+
+    arregloTemporal *x = (arregloTemporal *) a;
+    arregloTemporal *y = (arregloTemporal *) b;
+
+    if((*x).distancia > (*y).distancia){
+        return 1;
+    }else{
+        if((*x).distancia < (*y).distancia){
+            return -1;
+        }else{
+            return 0;
+        }
+    }
+
+}
+
+void guardaInversa(arregloTemporal* temporal, int** tabla, int fila, int columna){
+
+    int i;
+
+    for(i = 0; i < columna; i++){
+        tabla[fila][temporal[i].indice] = i;
+    }
+
+}
+
+void muestraTablaEntera(int** tabla, int filas, int columnas){
+
+    int i;
+    int j;
+
+    printf("\n");
+    for( i = 0; i < filas; i++){
+        for(j = 0; j < columnas; j++){
+            printf("%d ", tabla[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
 #endif
 

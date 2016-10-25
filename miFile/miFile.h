@@ -22,4 +22,11 @@ typedef struct{
 
 }miFile;
 
+typedef struct{
+
+    Tdist distancia;
+    int indice;
+
+}arregloTemporal;
+
 #endif //MIFILE_MIFILE_H
