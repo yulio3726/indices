@@ -22,11 +22,28 @@ typedef struct{
 
 }miFile;
 
+
 typedef struct{
 
     Tdist distancia;
     int indice;
 
 }arregloTemporal;
+
+
+typedef struct nodo_s{
+    int pivotePosicionCercania;
+    Obj o;
+    struct nodo_s *siguiente;
+}Nodo;
+
+typedef struct ListaIdentificar{
+
+    Nodo* inicio;
+    Nodo* fin;
+    //int tamano;
+}Lista;
+
+
 
 #endif //MIFILE_MIFILE_H

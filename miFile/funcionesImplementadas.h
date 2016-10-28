@@ -22,6 +22,7 @@ void seleccionaPivotesAleatorio(Obj* pivotes, int nPivotes, int np){
 
 }
 
+
 void muestraPivotes(Obj* pivotes, int n){
 
     int i;
@@ -30,6 +31,7 @@ void muestraPivotes(Obj* pivotes, int n){
         printf("pivote [%d] : %d \n", i, pivotes[i]);
     }
 }
+
 
 void construyeTablaDistancias(Tdist** tablaTemporal, int columnas, int filas, Obj* pivotes){  //colummnas = nPivotes  // filas = np
 
@@ -46,6 +48,7 @@ void construyeTablaDistancias(Tdist** tablaTemporal, int columnas, int filas, Ob
 
 }
 
+
 void muestraTablaflotante(Tdist** tabla, int columnas, int filas){
 
     int i;
@@ -59,6 +62,7 @@ void muestraTablaflotante(Tdist** tabla, int columnas, int filas){
     }
 }
 
+
 void copiaArregloTemporal(Tdist** tabla, int filaCopiar, int columnas, arregloTemporal* temporal){
 
     int i;
@@ -69,6 +73,7 @@ void copiaArregloTemporal(Tdist** tabla, int filaCopiar, int columnas, arregloTe
     }
 }
 
+
 void muestraArregloTemporal(arregloTemporal* temporal, int n){
 
     int i;
@@ -78,6 +83,7 @@ void muestraArregloTemporal(arregloTemporal* temporal, int n){
     }
 
 }
+
 
 int cmpFloat(const void *a, const void *b){
 
@@ -96,6 +102,7 @@ int cmpFloat(const void *a, const void *b){
 
 }
 
+
 void guardaInversa(arregloTemporal* temporal, int** tabla, int fila, int columna){
 
     int i;
@@ -105,6 +112,7 @@ void guardaInversa(arregloTemporal* temporal, int** tabla, int fila, int columna
     }
 
 }
+
 
 void muestraTablaEntera(int** tabla, int filas, int columnas){
 
@@ -120,5 +128,78 @@ void muestraTablaEntera(int** tabla, int filas, int columnas){
     }
     printf("\n");
 }
-#endif
 
+void inicializaLista(Lista* lista){
+
+    lista->inicio = NULL;
+    lista->fin = NULL;
+    //lista->tamano = 0;
+
+}
+
+Nodo* creaNodo(Obj o, int pivotePosicionCercania){
+
+    Nodo* nuevoNodo;
+    nuevoNodo = (Nodo *)malloc(sizeof( Nodo ));
+
+    nuevoNodo->o = o;
+    nuevoNodo->pivotePosicionCercania = pivotePosicionCercania;
+    nuevoNodo->siguiente = NULL;
+
+    return nuevoNodo;
+}
+
+void insertaNodoLista(Lista* lista, Nodo* nodo){
+
+    if(lista->inicio == NULL){
+        lista->inicio = nodo;
+        lista->fin = nodo;
+    }else{
+        lista->fin->siguiente = nodo;
+        lista->fin = nodo;
+    }
+
+}
+
+void muestraLista(Lista* lista){
+
+    Nodo* aux = lista->inicio;
+
+    while(aux != NULL){
+        printf("(%d,%d)", aux->o, aux->pivotePosicionCercania);
+        aux = aux->siguiente;
+        if(aux != NULL)
+            printf("->");
+    }
+    printf("\n");
+}
+
+/*
+int eliminaNodo(lista *listaModificar, nodo nodoEliminar){
+
+    int x = 0;
+    nodo borrarNodo = NULL;
+
+    if(nodoEliminar != NULL){
+        if(nodoEliminar->siguiente != NULL){
+            borrarNodo = nodoEliminar->siguiente;
+            nodoEliminar->siguiente = borrarNodo->siguiente;
+        }
+    }else{
+        if(*listaModificar != NULL){
+            borrarNodo = *listaModificar;
+            *listaModificar = borrarNodo->siguiente;
+        }
+    }
+
+    if(borrarNodo != NULL){
+        x = borrarNodo->pivotePosicionCercania; //solo se regresa la posicion, falta regresar el objeto
+        free(borrarNodo);
+    }else{
+        printf("No se pudo borrar el elemento\n");
+    }
+
+    return x;
+}*/
+
+#endif

@@ -22,6 +22,10 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     int **espacioTransformado; //guarda las permutaciones inversas
 
+    Lista *postingList;
+
+    Nodo* nuevoNodo;
+
     I = malloc( sizeof( miFile ) );
 
     I -> descr = malloc(strlen (dbname) + 1);
@@ -63,6 +67,21 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     }
 
     muestraTablaEntera(espacioTransformado, I->np, I->nPivotes);
+
+
+    postingList = (Lista*)malloc(sizeof(Lista));
+    inicializaLista(postingList);
+
+    nuevoNodo = (Nodo * )malloc(sizeof( Nodo));
+
+    for( i = 0; i < I->np; i++){
+        nuevoNodo = creaNodo(i, i + 2);
+        insertaNodoLista(postingList,nuevoNodo);
+    }
+
+    printf("Los objetos en la lista son:\n");
+    muestraLista(postingList);
+
 
     free(I);
     free(temporal);
