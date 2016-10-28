@@ -19,6 +19,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     arregloTemporal *temporal;
 
     int i;
+    int j;
 
     int **espacioTransformado; //guarda las permutaciones inversas
 
@@ -58,29 +59,33 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     for(i = 0; i < I->np; i++){
         copiaArregloTemporal(tablaTemporal, i, I->nPivotes, temporal);
-        //printf("\nEl arreglo temporal tiene: \n");
-        //muestraArregloTemporal(temporal, I->nPivotes);
         qsort(temporal, I->nPivotes, sizeof(arregloTemporal), cmpFloat);
-        //printf("\nEl arreglo temporal despues de ordenar: \n");
-        //muestraArregloTemporal(temporal, I->nPivotes);
         guardaInversa(temporal,espacioTransformado,i, I->nPivotes);
     }
 
     muestraTablaEntera(espacioTransformado, I->np, I->nPivotes);
 
 
-    postingList = (Lista*)malloc(sizeof(Lista));
-    inicializaLista(postingList);
+    postingList = (Lista *)malloc(sizeof(Lista) * I->nPivotes);
+    for(i = 0; i < I->nPivotes; i++){
+        inicializaLista(&postingList[i]);
+    }
 
     nuevoNodo = (Nodo * )malloc(sizeof( Nodo));
 
-    for( i = 0; i < I->np; i++){
-        nuevoNodo = creaNodo(i, i + 2);
-        insertaNodoLista(postingList,nuevoNodo);
+    for(j = 0; j < I->nPivotes; j++){
+        for( i = 0; i < I->np; i++){
+            nuevoNodo = creaNodo(i, espacioTransformado[i][j]);
+            insertaNodoLista(&postingList[j],nuevoNodo);
+        }
+
     }
 
     printf("Los objetos en la lista son:\n");
-    muestraLista(postingList);
+    for(i = 0; i < I->nPivotes; i++){
+        muestraLista(&postingList[i]);
+    }
+
 
 
     free(I);

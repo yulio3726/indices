@@ -124,16 +124,21 @@ void muestraTablaEntera(int** tabla, int filas, int columnas){
         for(j = 0; j < columnas; j++){
             printf("%d ", tabla[i][j]);
         }
-        printf("\n");
+        printf("[%d]\n", i);
     }
     printf("\n");
 }
 
 void inicializaLista(Lista* lista){
 
+    /*int i = 0;
+    for(i = 0; i < n; i++ ){
+        lista[i].fin = NULL;
+        lista[i].inicio = NULL;
+    }*/
+
     lista->inicio = NULL;
     lista->fin = NULL;
-    //lista->tamano = 0;
 
 }
 
