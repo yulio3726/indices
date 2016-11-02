@@ -37,6 +37,7 @@ typedef struct nodo_s{
     struct nodo_s *siguiente;
 }Nodo;
 
+
 typedef struct ListaIdentificar{
 
     Nodo* inicio;
@@ -44,6 +45,11 @@ typedef struct ListaIdentificar{
     //int tamano;
 }Lista;
 
-
+/*
+typedef struct {
+    int indice;
+    int pivotePosicionCercania;
+}IndiceInvertidoConsulta;
+*/
 
 #endif //MIFILE_MIFILE_H

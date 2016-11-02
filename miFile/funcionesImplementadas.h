@@ -40,7 +40,7 @@ void construyeTablaDistancias(Tdist** tablaTemporal, int columnas, int filas, Ob
 
     for(i = 0; i < filas; i++){
         for(j = 0; j < columnas; j++){
-            tablaTemporal[i][j] = distance(i,pivotes[j]);
+            tablaTemporal[i][j] = distance(i+1,pivotes[j]);
         }
     }
 
@@ -58,7 +58,7 @@ void muestraTablaflotante(Tdist** tabla, int columnas, int filas){
         for(j = 0; j < columnas; j++){
             printf("  %f", tabla[i][j]);
         }
-        printf("  [%d]\n",i);
+        printf("  [%d]\n",i+1);
     }
 }
 
@@ -206,5 +206,50 @@ int eliminaNodo(lista *listaModificar, nodo nodoEliminar){
 
     return x;
 }*/
+
+
+void seleccionaObjetosPrueba(Obj* objetosPrueba, int cantidad, int intervalo){
+    int i;
+
+    srand(time(NULL));
+
+    printf("\nLos objetos seleccionados para las pruebas son:\n");
+    for(i = 0; i < cantidad; i++){
+        objetosPrueba[i] = rand() %intervalo + 1;
+        printf("%d ", objetosPrueba[i]);
+    }
+
+    objetosPrueba[0] = 17; //para fijarlo y usarlo en las pruebas a mano
+
+}
+
+void calculaDistanciaReferenciasConsulta(Obj q, arregloTemporal* temporal, int nPivotes, Obj* pivotes){
+    int i;
+
+    for(i = 0; i < nPivotes; i++){
+        temporal[i].distancia = distance(q, pivotes[i]);
+        temporal[i].indice = i;
+    }
+
+}
+
+void guardaInversaQ(arregloTemporal* temporal, int* dominioTransformadoQ, int columna){
+
+    int i;
+
+    for(i = 0; i < columna; i++){
+        dominioTransformadoQ[temporal[i].indice] = i;
+    }
+
+}
+
+void muestraDominioTransformadoQ(int* dominioTransformadoQ, int n){
+    int i;
+
+    for(i = 0; i < n; i++){
+        printf(" %d", dominioTransformadoQ[i]);
+    }
+    printf("\n");
+}
 
 #endif

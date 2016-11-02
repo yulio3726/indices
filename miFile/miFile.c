@@ -20,8 +20,13 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     int i;
     int j;
+    int nObjetosPrueba = 1;
 
-    int **espacioTransformado; //guarda las permutaciones inversas
+    int **dominioTransformado; //guarda las permutaciones inversas
+
+    int *dominioTransformadoQ;
+
+    Obj *objetosPrueba;
 
     Lista *postingList;
 
@@ -50,9 +55,9 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     printf("\nLa tabla de distancias es: \n");
     muestraTablaflotante(tablaTemporal, I -> nPivotes, I -> np);
 
-    espacioTransformado = (int**)malloc(sizeof(int*) * I->np);
+    dominioTransformado = (int**)malloc(sizeof(int*) * I->np);
     for(i = 0; i < I->np; i++){
-        espacioTransformado[i] = (int*)malloc(sizeof(int) * I->nPivotes);
+        dominioTransformado[i] = (int*)malloc(sizeof(int) * I->nPivotes);
     }
 
     temporal = (arregloTemporal*) malloc( sizeof(arregloTemporal) * I->nPivotes);
@@ -60,10 +65,10 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     for(i = 0; i < I->np; i++){
         copiaArregloTemporal(tablaTemporal, i, I->nPivotes, temporal);
         qsort(temporal, I->nPivotes, sizeof(arregloTemporal), cmpFloat);
-        guardaInversa(temporal,espacioTransformado,i, I->nPivotes);
+        guardaInversa(temporal,dominioTransformado,i, I->nPivotes);
     }
 
-    muestraTablaEntera(espacioTransformado, I->np, I->nPivotes);
+    muestraTablaEntera(dominioTransformado, I->np, I->nPivotes);
 
 
     postingList = (Lista *)malloc(sizeof(Lista) * I->nPivotes);
@@ -75,22 +80,39 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     for(j = 0; j < I->nPivotes; j++){
         for( i = 0; i < I->np; i++){
-            nuevoNodo = creaNodo(i, espacioTransformado[i][j]);
+            nuevoNodo = creaNodo(i, dominioTransformado[i][j]);
             insertaNodoLista(&postingList[j],nuevoNodo);
         }
 
     }
 
-    printf("Los objetos en la lista son:\n");
+    printf("Los objetos en el posting list son:\n");
     for(i = 0; i < I->nPivotes; i++){
         muestraLista(&postingList[i]);
     }
 
+    objetosPrueba = (Obj *)malloc(sizeof(Obj)*nObjetosPrueba);
+    dominioTransformadoQ = (int *)malloc(sizeof(int) * I->nPivotes);
 
+    seleccionaObjetosPrueba(objetosPrueba, nObjetosPrueba, I->np);
+
+    for(i = 0; i < nObjetosPrueba; i++){
+        printf("\nse calcula el indice invertido de la consulta %d\n",objetosPrueba[i]);
+        calculaDistanciaReferenciasConsulta(objetosPrueba[i], temporal, I->nPivotes, I->pivotes);
+        printf("\tLas distancias no ordenadas entre la consulta y las referencias son:\n");
+        muestraArregloTemporal(temporal, I->nPivotes);
+        qsort(temporal, I->nPivotes, sizeof(arregloTemporal), cmpFloat);
+        printf("\tLas distancias ordenadas entre la consulta y las referencias son:\n");
+        muestraArregloTemporal(temporal, I->nPivotes);
+        guardaInversaQ(temporal, dominioTransformadoQ, I->nPivotes);
+        printf("La inversa de q es:\n");
+        muestraDominioTransformadoQ(dominioTransformadoQ, I->nPivotes);
+    }
 
     free(I);
     free(temporal);
-    free(espacioTransformado);
+    free(dominioTransformado);
+    free(dominioTransformadoQ);
     closeDB();
     return (Index) I;
 }
