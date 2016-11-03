@@ -252,4 +252,46 @@ void muestraDominioTransformadoQ(int* dominioTransformadoQ, int n){
     printf("\n");
 }
 
+float kNN(miFile* I, int k, int porcentaje, int* dominioTransdormadoQ, Obj q);
+
+
+void inicializaDistanciasAprox(arregloTemporal* distanciasAprox, int n){
+
+    int i;
+
+    for(i = 0; i < n; i++){
+        distanciasAprox[i].distancia = 0;
+        distanciasAprox[i].indice = i + 1; //este es el objeto por eso le sumo uno a la variable indice
+    }
+
+}
+
+int cmpEntero(const void *a, const void *b){
+
+    const arregloTemporal *c1 = (arregloTemporal *) a;
+    const arregloTemporal *c2 = (arregloTemporal *) b;
+
+    return ( c1 -> distancia - c2 -> distancia);
+}
+
+void reRanking(int porcentaje, Obj q, arregloTemporal* distanciaRealObjetoConsultaAprox, arregloTemporal* distanciaObjetoConsultaAprox){
+
+    int i;
+
+    for(i = 0; i < porcentaje; i++){
+        distanciaRealObjetoConsultaAprox[i].distancia = distance(distanciaObjetoConsultaAprox[i].indice, q);
+        distanciaRealObjetoConsultaAprox[i].indice = distanciaObjetoConsultaAprox[i].indice;
+    }
+
+}
+
+void calculaDistanciaReal(arregloTemporal* distanciaObjetoConsultaReal, int n, Obj q){
+
+    int i;
+
+    for(i = 0; i < n; i++){
+        distanciaObjetoConsultaReal[i].distancia = distance(i+1, q);
+        distanciaObjetoConsultaReal[i].indice = i+1;
+    }
+}
 #endif

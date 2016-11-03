@@ -12,23 +12,29 @@ Index build (char *dbname, int n, int *argc, char ***argv){
         exit(1);
     }
 
-    miFile *I;
+    miFile* I;
 
-    Tdist **tablaTemporal; //guarda las distancias a los pivotes
+    Tdist** tablaTemporal; //guarda las distancias a los pivotes
 
-    arregloTemporal *temporal;
+    arregloTemporal* temporal;
 
     int i;
     int j;
+    int k = 10; //50
     int nObjetosPrueba = 1;
+    int amp = 1;
+    int porcentaje = amp*k;
 
-    int **dominioTransformado; //guarda las permutaciones inversas
+    int** dominioTransformado; //guarda las permutaciones inversas
 
-    int *dominioTransformadoQ;
+    int* dominioTransformadoQ;
 
-    Obj *objetosPrueba;
+    float recall;
+    float sumaRecall;
 
-    Lista *postingList;
+    Obj* objetosPrueba;
+
+    //Lista *postingList;
 
     Nodo* nuevoNodo;
 
@@ -47,20 +53,20 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     printf("\nLos seleccionados pivotes son\n");
     muestraPivotes(I -> pivotes, I -> nPivotes);
 
-    tablaTemporal = (Tdist**) malloc( sizeof( Tdist* ) * I->np);
+    tablaTemporal = (Tdist **) malloc( sizeof( Tdist* ) * I->np);
     for(i = 0; i < I->np; i++){
-        tablaTemporal[i] = (Tdist*) malloc( sizeof(Tdist) * I->nPivotes);
+        tablaTemporal[i] = (Tdist *) malloc( sizeof(Tdist) * I->nPivotes);
     }
     construyeTablaDistancias(tablaTemporal, I -> nPivotes, I -> np, I -> pivotes);
     printf("\nLa tabla de distancias es: \n");
     muestraTablaflotante(tablaTemporal, I -> nPivotes, I -> np);
 
-    dominioTransformado = (int**)malloc(sizeof(int*) * I->np);
+    dominioTransformado = (int **)malloc(sizeof(int*) * I->np);
     for(i = 0; i < I->np; i++){
-        dominioTransformado[i] = (int*)malloc(sizeof(int) * I->nPivotes);
+        dominioTransformado[i] = (int *)malloc(sizeof(int) * I->nPivotes);
     }
 
-    temporal = (arregloTemporal*) malloc( sizeof(arregloTemporal) * I->nPivotes);
+    temporal = (arregloTemporal *) malloc( sizeof(arregloTemporal) * I->nPivotes);
 
     for(i = 0; i < I->np; i++){
         copiaArregloTemporal(tablaTemporal, i, I->nPivotes, temporal);
@@ -71,9 +77,9 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     muestraTablaEntera(dominioTransformado, I->np, I->nPivotes);
 
 
-    postingList = (Lista *)malloc(sizeof(Lista) * I->nPivotes);
+    I->postingList = (Lista *)malloc(sizeof(Lista) * I->nPivotes);
     for(i = 0; i < I->nPivotes; i++){
-        inicializaLista(&postingList[i]);
+        inicializaLista(&I->postingList[i]);
     }
 
     nuevoNodo = (Nodo * )malloc(sizeof( Nodo));
@@ -81,14 +87,14 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     for(j = 0; j < I->nPivotes; j++){
         for( i = 0; i < I->np; i++){
             nuevoNodo = creaNodo(i, dominioTransformado[i][j]);
-            insertaNodoLista(&postingList[j],nuevoNodo);
+            insertaNodoLista(&I->postingList[j],nuevoNodo);
         }
 
     }
 
     printf("Los objetos en el posting list son:\n");
     for(i = 0; i < I->nPivotes; i++){
-        muestraLista(&postingList[i]);
+        muestraLista(&I->postingList[i]);
     }
 
     objetosPrueba = (Obj *)malloc(sizeof(Obj)*nObjetosPrueba);
@@ -99,14 +105,19 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     for(i = 0; i < nObjetosPrueba; i++){
         printf("\nse calcula el indice invertido de la consulta %d\n",objetosPrueba[i]);
         calculaDistanciaReferenciasConsulta(objetosPrueba[i], temporal, I->nPivotes, I->pivotes);
-        printf("\tLas distancias no ordenadas entre la consulta y las referencias son:\n");
-        muestraArregloTemporal(temporal, I->nPivotes);
+       //printf("\tLas distancias no ordenadas entre la consulta y las referencias son:\n");
+        //muestraArregloTemporal(temporal, I->nPivotes);
         qsort(temporal, I->nPivotes, sizeof(arregloTemporal), cmpFloat);
-        printf("\tLas distancias ordenadas entre la consulta y las referencias son:\n");
-        muestraArregloTemporal(temporal, I->nPivotes);
+        //printf("\tLas distancias ordenadas entre la consulta y las referencias son:\n");
+        //muestraArregloTemporal(temporal, I->nPivotes);
         guardaInversaQ(temporal, dominioTransformadoQ, I->nPivotes);
-        printf("La inversa de q es:\n");
+        printf("El domio transformado de q es:\n");
         muestraDominioTransformadoQ(dominioTransformadoQ, I->nPivotes);
+
+        sumaRecall = 0;
+        recall = kNN(I, k, porcentaje, dominioTransformadoQ, objetosPrueba[i]);
+        sumaRecall = sumaRecall + recall;
+
     }
 
     free(I);
@@ -115,4 +126,60 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     free(dominioTransformadoQ);
     closeDB();
     return (Index) I;
+}
+
+float kNN(miFile* I, int k, int porcentaje, int* dominioTransformadoQ, Obj q){
+
+    int i;
+    int o;
+
+    float recall = 0;
+
+    Nodo* aux = NULL;
+
+    arregloTemporal* distanciaObjetoConsultaAprox;
+    arregloTemporal* distanciaRealObjetoConsultaAprox;
+    arregloTemporal* distanciaObjetoConsultaReal;
+
+
+    distanciaObjetoConsultaAprox = (arregloTemporal *)malloc(sizeof(arregloTemporal) * I->np);
+    inicializaDistanciasAprox(distanciaObjetoConsultaAprox, I->np);
+
+    //printf("jajaja\n");
+    for(i = 0; i < I->nPivotes; i++){
+        //printf("\n\nse revisa la lista numero %d\n", i+1);
+        aux = I->postingList[i].inicio;
+        o = 0;
+        while(aux != NULL){
+            distanciaObjetoConsultaAprox[o].distancia = distanciaObjetoConsultaAprox[o].distancia + abs(aux->pivotePosicionCercania - dominioTransformadoQ[i]);
+            aux = aux->siguiente;
+            o = o + 1;
+        }
+       //muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
+    }
+
+    //printf("distancias aprox desordenadas\n");
+    //muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
+
+    qsort(distanciaObjetoConsultaAprox, I->np, sizeof(arregloTemporal), cmpEntero);
+    printf("\ndistancias aprox ordenadas\n");
+    muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
+
+    distanciaRealObjetoConsultaAprox = (arregloTemporal *)malloc( sizeof( arregloTemporal ) * porcentaje);
+    reRanking(porcentaje, q, distanciaRealObjetoConsultaAprox, distanciaObjetoConsultaAprox);
+    qsort(distanciaRealObjetoConsultaAprox, porcentaje, sizeof(arregloTemporal), cmpFloat);
+    printf("Los objetos candidatos aproximados en donde hay que seleccionar los k vecinos as cercanos es:\n");
+    muestraArregloTemporal(distanciaRealObjetoConsultaAprox, porcentaje);
+
+    distanciaObjetoConsultaReal = (arregloTemporal *) malloc(sizeof(arregloTemporal) * I->np);
+    //inicializaDistanciasAprox(distanciaObjetoConsultaReal, I->np);
+    calculaDistanciaReal(distanciaObjetoConsultaReal, I -> np, q);
+    qsort(distanciaObjetoConsultaReal, I->np, sizeof(arregloTemporal), cmpFloat);
+    printf("La consulta real ordenada es :\n");
+    muestraArregloTemporal(distanciaObjetoConsultaReal, I->np);
+
+    free(distanciaObjetoConsultaAprox);
+    free(distanciaRealObjetoConsultaAprox);
+    free(distanciaObjetoConsultaReal);
+    return recall;
 }

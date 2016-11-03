@@ -13,18 +13,6 @@
 
 typedef struct{
 
-    Obj *pivotes; //pivotes seleccionados
-
-    char *descr; //nombre de la base de datos
-
-    int np; //tamaño de la base de datos
-    int nPivotes;
-
-}miFile;
-
-
-typedef struct{
-
     Tdist distancia;
     int indice;
 
@@ -45,11 +33,17 @@ typedef struct ListaIdentificar{
     //int tamano;
 }Lista;
 
-/*
-typedef struct {
-    int indice;
-    int pivotePosicionCercania;
-}IndiceInvertidoConsulta;
-*/
+typedef struct{
+
+    Obj* pivotes; //pivotes seleccionados
+
+    char* descr; //nombre de la base de datos
+
+    int np; //tamaño de la base de datos
+    int nPivotes;
+
+    Lista* postingList;
+
+}miFile;
 
 #endif //MIFILE_MIFILE_H
