@@ -274,6 +274,17 @@ int cmpEntero(const void *a, const void *b){
     return ( c1 -> distancia - c2 -> distancia);
 }
 
+int cmpObjEntero(const void *a, const void *b){
+
+     int *o1 = *((int *) a);
+     int *o2 = *((int *) b);
+
+    if(o1 > o2) return 1;
+    if(o1 < o2) return -1;
+    return 0;
+}
+
+
 void reRanking(int porcentaje, Obj q, arregloTemporal* distanciaRealObjetoConsultaAprox, arregloTemporal* distanciaObjetoConsultaAprox){
 
     int i;
@@ -293,5 +304,65 @@ void calculaDistanciaReal(arregloTemporal* distanciaObjetoConsultaReal, int n, O
         distanciaObjetoConsultaReal[i].distancia = distance(i+1, q);
         distanciaObjetoConsultaReal[i].indice = i+1;
     }
+}
+
+void calculaCandidatos(arregloTemporal* distanciaObjetoConsultaReal,arregloTemporal* distanciaRealObjetoConsultaAprox, Obj* knnReal, Obj* knnAproximado, int k){
+
+    int i;
+
+    for(i = 0; i < k; i++){
+        knnReal[i] = distanciaObjetoConsultaReal[i].indice;
+        knnAproximado[i] = distanciaRealObjetoConsultaAprox[i].indice;
+    }
+
+}
+
+
+void muestraArregloEntero(int* arreglo, int n){
+
+    int i;
+
+    for(i = 0; i < n; i++){
+        printf("\t %d\n", arreglo[i]);
+    }
+
+    printf("\n");
+}
+
+void guardaInversaQReal(arregloTemporal* temporal, int* dominioTransformadoQ, int columna){
+
+    int i;
+
+    for(i = 0; i < columna; i++){
+        dominioTransformadoQ[temporal[i].indice-1] = i + 1;
+    }
+
+}
+
+float calculaErrorDePosicion(int* knnAprox, int* inversaQReal, int k, int nDB){
+
+    float errorDePosicion = 0;
+    int sumatoria = 0;
+    int i = 0;
+    int posOT;
+    int posOS;
+    int o;
+
+    for(i = 0; i < k; i++){
+        posOS = i + 1;
+        o = knnAprox[i];
+        posOT = inversaQReal[o - 1];
+        //printf("el objeto %d esta aproximada en la posicion %d pero se encuentra exactamente en la posicion %d \n", o, posOS, posOT);
+        sumatoria = sumatoria + abs(posOT - posOS);
+    }
+
+    printf("sumatoria %d k: %d nBD %d\n", sumatoria, k, nDB);
+    printf("sumatoria/k %f\n", (float)sumatoria/k );
+    printf("1/k: %f\n", (float)1/nDB);
+
+    errorDePosicion = ((float)sumatoria / (float)k) * ((float)1/(float)nDB);
+    printf("error : %f\n", errorDePosicion);
+
+    return errorDePosicion;
 }
 #endif

@@ -118,6 +118,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
         recall = kNN(I, k, porcentaje, dominioTransformadoQ, objetosPrueba[i]);
         sumaRecall = sumaRecall + recall;
 
+        printf("promedio recall %f\n\n", sumaRecall/nObjetosPrueba);
     }
 
     free(I);
@@ -132,10 +133,20 @@ float kNN(miFile* I, int k, int porcentaje, int* dominioTransformadoQ, Obj q){
 
     int i;
     int o;
+    int interseccion = 0;
+
+    int* inversaQReal;
 
     float recall = 0;
+    float errorDePosicion = 0;
 
     Nodo* aux = NULL;
+
+    Obj* knnAproximado = NULL;
+    Obj* knnReal = NULL;
+
+    Obj objetivo;
+    Obj resultado;
 
     arregloTemporal* distanciaObjetoConsultaAprox;
     arregloTemporal* distanciaRealObjetoConsultaAprox;
@@ -162,24 +173,62 @@ float kNN(miFile* I, int k, int porcentaje, int* dominioTransformadoQ, Obj q){
     //muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
 
     qsort(distanciaObjetoConsultaAprox, I->np, sizeof(arregloTemporal), cmpEntero);
-    printf("\ndistancias aprox ordenadas\n");
-    muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
+    //printf("\ndistancias aprox ordenadas\n");
+    //muestraArregloTemporal(distanciaObjetoConsultaAprox, I->np);
 
     distanciaRealObjetoConsultaAprox = (arregloTemporal *)malloc( sizeof( arregloTemporal ) * porcentaje);
     reRanking(porcentaje, q, distanciaRealObjetoConsultaAprox, distanciaObjetoConsultaAprox);
     qsort(distanciaRealObjetoConsultaAprox, porcentaje, sizeof(arregloTemporal), cmpFloat);
-    printf("Los objetos candidatos aproximados en donde hay que seleccionar los k vecinos as cercanos es:\n");
-    muestraArregloTemporal(distanciaRealObjetoConsultaAprox, porcentaje);
+    //printf("Los objetos candidatos aproximados en donde hay que seleccionar los k vecinos as cercanos es:\n");
+    //muestraArregloTemporal(distanciaRealObjetoConsultaAprox, porcentaje);
 
     distanciaObjetoConsultaReal = (arregloTemporal *) malloc(sizeof(arregloTemporal) * I->np);
     //inicializaDistanciasAprox(distanciaObjetoConsultaReal, I->np);
     calculaDistanciaReal(distanciaObjetoConsultaReal, I -> np, q);
     qsort(distanciaObjetoConsultaReal, I->np, sizeof(arregloTemporal), cmpFloat);
-    printf("La consulta real ordenada es :\n");
-    muestraArregloTemporal(distanciaObjetoConsultaReal, I->np);
+    //printf("La consulta real ordenada es :\n");
+    //muestraArregloTemporal(distanciaObjetoConsultaReal, I->np);
+
+    knnAproximado = (Obj *)malloc( sizeof(Obj) * k);
+    knnReal = (Obj *)malloc(sizeof(Obj) * k);
+
+    calculaCandidatos(distanciaObjetoConsultaReal, distanciaRealObjetoConsultaAprox, knnReal, knnAproximado, k);
+
+    // se calculael errror de posicion
+
+    inversaQReal = (int *)malloc(sizeof(int) * I->np);
+    guardaInversaQReal(distanciaObjetoConsultaReal,inversaQReal, I->np);
+    //printf("La inversa de La consulta real es:\n");
+    //muestraDominioTransformadoQ(inversaQReal, I->np);
+
+    errorDePosicion = calculaErrorDePosicion(knnAproximado, inversaQReal, k, I->np);
+    printf("\nEl error de posicion es %f\n", errorDePosicion);
+    // se finaliza el calculo del error de posicion
+
+    //printf("Los knn aprox ordenados son:\n");
+    qsort(knnAproximado, k, sizeof(Obj), cmpObjEntero);
+    //muestraArregloEntero(knnAproximado, k);
+    //printf("Los knn reales ordenados son: \n");
+    //muestraArregloTemporal(knnReal, k);
+
+    for(i = 0; i < k; i++){
+
+        objetivo = knnReal[i];
+        resultado = (int*) bsearch( &objetivo, knnAproximado, k, sizeof( Obj ), cmpObjEntero);
+        if( resultado != NULL){
+            interseccion++;
+        }
+    }
+
+
+    recall = ((float)interseccion / (float) k) * 100;
+
 
     free(distanciaObjetoConsultaAprox);
     free(distanciaRealObjetoConsultaAprox);
     free(distanciaObjetoConsultaReal);
+    free(knnAproximado);
+    free(knnReal);
+    free(inversaQReal);
     return recall;
 }
