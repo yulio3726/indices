@@ -1,0 +1,3 @@
+/home/cesar/SISAP/src/indexes/ghs/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/cesar/SISAP/src/indexes/ghs/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/cesar/SISAP/src/indexes/ghs/cmake-build-debug/CMakeFiles/ghs.dir
