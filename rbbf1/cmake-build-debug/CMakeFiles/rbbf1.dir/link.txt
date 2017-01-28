@@ -1,0 +1,1 @@
+/usr/bin/cc   -Wall -Werror -g   CMakeFiles/rbbf1.dir/rbbf1.c.o  -o rbbf1 

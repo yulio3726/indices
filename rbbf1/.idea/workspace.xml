@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
       <config projectName="rbbf1" targetName="rbbf1" />
     </generated>
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
-    <ADDITIONAL_GENERATION_ENVIRONMENT>
-      <envs />
-    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8aa3fec-5bb7-45bd-8c34-46789617775e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nngs/.idea/vcs.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghs/.idea/ghs.iml" afterPath="$PROJECT_DIR$/../ghs/.idea/ghs.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghs/.idea/misc.xml" afterPath="$PROJECT_DIR$/../ghs/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ghs/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ghs/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miFile/.idea/miFile.iml" afterPath="$PROJECT_DIR$/../miFile/.idea/miFile.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miFile/.idea/misc.xml" afterPath="$PROJECT_DIR$/../miFile/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miFile/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../miFile/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miFile/funcionesImplementadas.h" afterPath="$PROJECT_DIR$/../miFile/funcionesImplementadas.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../miFile/miFile.c" afterPath="$PROJECT_DIR$/../miFile/miFile.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nngs/.idea/misc.xml" afterPath="$PROJECT_DIR$/../nngs/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nngs/.idea/modules.xml" afterPath="$PROJECT_DIR$/../nngs/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nngs/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../nngs/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../nngs/nngs.c" afterPath="$PROJECT_DIR$/../nngs/nngs.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/rbbf1.iml" afterPath="$PROJECT_DIR$/.idea/rbbf1.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rbbf1.c" afterPath="$PROJECT_DIR$/rbbf1.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sss/.idea/misc.xml" afterPath="$PROJECT_DIR$/../sss/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sss/.idea/modules.xml" afterPath="$PROJECT_DIR$/../sss/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sss/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../sss/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sss/CMakeLists.txt" afterPath="$PROJECT_DIR$/../sss/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sss/sss.c" afterPath="$PROJECT_DIR$/../sss/sss.c" />
     </list>
     <ignored path="rbbf1.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
-              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -51,10 +65,9 @@
       <file leaf-file-name="rbbf1.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rbbf1.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="304" column="6" selection-start-line="304" selection-start-column="6" selection-end-line="304" selection-end-column="6" />
+            <state relative-caret-position="198">
+              <caret line="188" column="15" lean-forward="true" selection-start-line="188" selection-start-column="15" selection-end-line="188" selection-end-column="15" />
               <folding>
-                <element signature="e#40#57#0" expanded="true" />
                 <element signature="e#7265#7539#0" expanded="false" />
               </folding>
             </state>
@@ -65,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/rbbf1.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
-              <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+              <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
               <folding>
                 <element signature="e#40#65#0" expanded="true" />
                 <element signature="e#1762#2043#0" expanded="false" />
@@ -97,23 +110,13 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1800" />
-    <option name="y" value="59" />
-    <option name="width" value="1469" />
-    <option name="height" value="911" />
+    <option name="x" value="2395" />
+    <option name="width" value="920" />
+    <option name="height" value="1080" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -126,11 +129,13 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sss" />
   </component>
   <component name="RunManager" selected="Application.rbbf1">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="rbbf1" TARGET_NAME="rbbf1" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
@@ -183,7 +188,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -373,22 +378,25 @@
       <workItem from="1476898815225" duration="225000" />
       <workItem from="1476899091540" duration="1213000" />
       <workItem from="1476901402044" duration="3548000" />
+      <workItem from="1485476510729" duration="982000" />
+      <workItem from="1485480716383" duration="698000" />
+      <workItem from="1485639615572" duration="679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149352000" />
+    <option name="totallyTimeSpent" value="151711000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1800" y="59" width="1469" height="911" extended-state="0" />
+    <frame x="2395" y="0" width="920" height="1080" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1128097" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11160384" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21922545" sideWeight="0.49624866" order="1" side_tool="false" content_ui="tabs" x="2241" y="73" width="169" height="933" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2296544" sideWeight="0.49624866" order="1" side_tool="false" content_ui="tabs" x="2241" y="73" width="169" height="933" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08908803" sideWeight="0.50375134" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -423,6 +431,9 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -451,7 +462,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -463,7 +474,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -471,9 +482,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -482,7 +492,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="59" selection-end-column="1" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -494,7 +504,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -502,9 +512,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -513,7 +522,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -525,7 +534,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -533,7 +542,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -541,9 +550,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -552,7 +560,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1026">
-          <caret line="57" column="20" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+          <caret line="57" column="20" lean-forward="false" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -564,7 +572,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -572,9 +580,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3870">
-          <caret line="215" column="48" selection-start-line="215" selection-start-column="48" selection-end-line="215" selection-end-column="48" />
+          <caret line="215" column="48" lean-forward="false" selection-start-line="215" selection-start-column="48" selection-end-line="215" selection-end-column="48" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -583,7 +590,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -595,7 +602,7 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <caret line="6" column="12" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -603,9 +610,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -614,7 +620,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -626,9 +632,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -637,7 +642,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -649,9 +654,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3240">
-          <caret line="180" column="19" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
+          <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -660,7 +664,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -672,9 +676,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -683,9 +686,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -694,7 +696,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -706,9 +708,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3204">
-          <caret line="178" column="0" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -717,7 +718,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -729,9 +730,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -740,7 +740,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -752,9 +752,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -763,7 +762,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+          <caret line="10" column="2" lean-forward="false" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -775,9 +774,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -786,7 +784,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -798,9 +796,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -809,7 +806,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -821,9 +818,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -832,7 +828,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -844,9 +840,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -855,7 +850,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -867,9 +862,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -878,7 +872,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -890,9 +884,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -901,7 +894,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -913,9 +906,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -924,7 +916,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -936,9 +928,8 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
-            <element signature="e#40#57#0" expanded="true" />
             <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
@@ -947,7 +938,7 @@
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
@@ -960,37 +951,36 @@
     <entry file="file://$PROJECT_DIR$/../../index.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rbbf1.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="304" column="6" selection-start-line="304" selection-start-column="6" selection-end-line="304" selection-end-column="6" />
-          <folding>
-            <element signature="e#40#57#0" expanded="true" />
-            <element signature="e#7265#7539#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rbbf1.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
-          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
           <folding>
             <element signature="e#40#65#0" expanded="true" />
             <element signature="e#1762#2043#0" expanded="false" />
             <element signature="e#2046#2130#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rbbf1.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="188" column="15" lean-forward="true" selection-start-line="188" selection-start-column="15" selection-end-line="188" selection-end-column="15" />
+          <folding>
+            <element signature="e#7265#7539#0" expanded="false" />
           </folding>
         </state>
       </provider>
