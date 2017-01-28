@@ -21,9 +21,9 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     int i;
     int j;
     int dimension;
-    int k = 20;
+    int k = 10;
     int posicion;
-    int nObjetoConsulta = 100;
+    int nObjetoConsulta = 200;
 
     //int porcentaje[] = { 3, 5, 10, 15, 20, 23};
     int porcentaje[] = { 1, 3, 5, 7, 9};
@@ -40,12 +40,15 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     G -> descr = malloc( strlen ( dbname) +1 );
     strcpy( G -> descr, dbname);
+    printf("\n\t name db");
 
     G -> nBD = openDB( G -> descr);
+    printf("\n\t open db");
 
     if( n && (n < G -> nBD) ) G -> nBD = n;
 
     G -> m = atoi( *argv[0] );
+    printf("\n\t parametro m = numero de pivotes");
 
     (*argc) --;
     (*argv)++;
@@ -53,6 +56,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     G -> l = atoi( *argv[0] );
     (*argc) --;
     (*argv)++;
+    printf("\n\t parametro l = longitud de los sketches");
 
     G -> pivotes = malloc( sizeof(Obj) * G -> m);
     G -> sketches = malloc( sizeof( unsigned int ) * G -> nBD );
@@ -127,7 +131,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
       //  printf("objeto %d: ", i);
         u = i;
 
-        G -> sketches[u-1] = 0;
+            G -> sketches[u-1] = 0;
         if( G -> l > 32)
             G -> sketchesPart2[u-1] = 0;
         if(G -> l > 64)
@@ -464,7 +468,7 @@ float kNN(swe* G, int k, int porcentaje, Obj q){
     kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
 
     calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
-    //printf("\n\n/*****************************************/\n\n");
+    //printf("\n\n/*****************************************/\n\n");, k);
     //printf("Los K candidatos reales no ordenados son:\n");
     //muestraCandidatos(kCandidatosReal, k);
     qsort( kCandidatosReal, k, sizeof( int ) , compara);

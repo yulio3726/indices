@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/nngs.iml" filepath="$PROJECT_DIR$/.idea/nngs.iml" />
       <module fileurl="file://$USER_HOME$/metricSpaces/src/indexes/nngs/.idea/swe.iml" filepath="$USER_HOME$/metricSpaces/src/indexes/nngs/.idea/swe.iml" />
     </modules>
   </component>

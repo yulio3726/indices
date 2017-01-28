@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
       <config projectName="swe" targetName="swe" />
     </generated>
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
-    <ADDITIONAL_GENERATION_ENVIRONMENT>
-      <envs />
-    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="978913ea-6585-42c5-aa40-ea89d85881e3" name="Default" comment="" />
     <ignored path="swe.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,34 +34,31 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nngs.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nngs.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nngs.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
+            <state relative-caret-position="216">
+              <caret line="60" column="37" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
               <folding>
-                <element signature="e#15257#15504#0" expanded="false" />
-                <element signature="e#15506#15731#0" expanded="false" />
-                <element signature="e#15733#15951#0" expanded="false" />
-                <element signature="e#15953#16088#0" expanded="false" />
-                <element signature="e#16514#16678#0" expanded="false" />
+                <element signature="e#39#56#0" expanded="true" />
+                <element signature="e#7515#7934#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nngs.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nngs.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nngs.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="46" selection-end-column="10" />
+            <state relative-caret-position="223">
+              <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -79,6 +77,7 @@
         <option value="$PROJECT_DIR$/../swe/swe.h" />
         <option value="$PROJECT_DIR$/../swe/swe.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/../../build.c" />
         <option value="$PROJECT_DIR$/nngs.c" />
       </list>
     </option>
@@ -90,19 +89,13 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2388" />
-    <option name="width" value="869" />
-    <option name="height" value="1043" />
+    <option name="x" value="1684" />
+    <option name="y" value="57" />
+    <option name="width" value="1437" />
+    <option name="height" value="854" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -122,9 +115,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rbbf1" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.swe">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="swe" TARGET_NAME="swe" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
@@ -177,7 +169,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
+      <command value="run" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
@@ -304,6 +296,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -354,11 +349,39 @@
       <workItem from="1476298040133" duration="78000" />
       <workItem from="1476298309450" duration="2392000" />
       <workItem from="1476308721728" duration="717000" />
+      <workItem from="1476314772358" duration="1364000" />
+      <workItem from="1476473405116" duration="1264000" />
+      <workItem from="1476814111379" duration="908000" />
+      <workItem from="1476815527633" duration="2608000" />
+      <workItem from="1476829104834" duration="471000" />
+      <workItem from="1476909570629" duration="767000" />
+      <workItem from="1476913908377" duration="779000" />
+      <workItem from="1476914764740" duration="795000" />
+      <workItem from="1477270306609" duration="8678000" />
+      <workItem from="1477338619622" duration="1927000" />
+      <workItem from="1477423710776" duration="1149000" />
+      <workItem from="1477479915001" duration="5000" />
+      <workItem from="1478128584442" duration="5188000" />
+      <workItem from="1478158704673" duration="3259000" />
+      <workItem from="1478193248753" duration="734000" />
+      <workItem from="1478194621793" duration="4989000" />
+      <workItem from="1478242786331" duration="2637000" />
+      <workItem from="1478630388187" duration="431000" />
+      <workItem from="1478632961022" duration="246000" />
+      <workItem from="1480661645254" duration="898000" />
+      <workItem from="1480676446810" duration="3568000" />
+      <workItem from="1480687004217" duration="2263000" />
+      <workItem from="1480690715824" duration="2334000" />
+      <workItem from="1480699984520" duration="18000" />
+      <workItem from="1481088992252" duration="1107000" />
+      <workItem from="1485468552974" duration="1481000" />
+      <workItem from="1485475255966" duration="701000" />
+      <workItem from="1485476439441" duration="1270000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129066000" />
+    <option name="totallyTimeSpent" value="180905000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -370,15 +393,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2388" y="0" width="869" height="1043" extended-state="0" />
+    <frame x="1684" y="57" width="1437" height="854" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11583924" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10992529" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15957446" sideWeight="0.49433428" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32881355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19024046" sideWeight="0.49433428" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1398363" sideWeight="0.5056657" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -391,6 +414,9 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -405,36 +431,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/nngs.c</url>
-          <line>382</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="32" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nngs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -442,7 +450,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3582">
-          <caret line="199" column="5" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
+          <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -450,13 +458,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -464,7 +469,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3582">
-          <caret line="199" column="5" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
+          <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -472,13 +477,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -486,7 +488,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3582">
-          <caret line="199" column="5" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
+          <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -494,13 +496,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -508,7 +507,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7668">
-          <caret line="426" column="36" selection-start-line="426" selection-start-column="36" selection-end-line="426" selection-end-column="36" />
+          <caret line="426" column="36" lean-forward="false" selection-start-line="426" selection-start-column="36" selection-end-line="426" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -516,13 +515,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -530,7 +526,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3132">
-          <caret line="174" column="24" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+          <caret line="174" column="24" lean-forward="false" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -538,13 +534,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -552,7 +545,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3132">
-          <caret line="174" column="24" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+          <caret line="174" column="24" lean-forward="false" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -560,13 +553,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5904">
-          <caret line="328" column="23" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
+          <caret line="328" column="23" lean-forward="false" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -574,7 +564,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3132">
-          <caret line="174" column="24" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
+          <caret line="174" column="24" lean-forward="false" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -582,13 +572,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -596,7 +583,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
-          <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -604,13 +591,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6480">
-          <caret line="360" column="18" selection-start-line="360" selection-start-column="18" selection-end-line="360" selection-end-column="18" />
+          <caret line="360" column="18" lean-forward="false" selection-start-line="360" selection-start-column="18" selection-end-line="360" selection-end-column="18" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -618,7 +602,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -626,13 +610,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -640,13 +621,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1548">
-          <caret line="86" column="22" selection-start-line="86" selection-start-column="22" selection-end-line="86" selection-end-column="22" />
+          <caret line="86" column="22" lean-forward="false" selection-start-line="86" selection-start-column="22" selection-end-line="86" selection-end-column="22" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,7 +632,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -662,35 +640,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nngs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1962">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="115" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nngs.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -698,7 +651,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1962">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="115" selection-end-column="5" />
+          <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="115" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -706,13 +659,29 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nngs.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1962">
+          <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="115" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nngs.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -720,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3204">
-          <caret line="178" column="59" selection-start-line="178" selection-start-column="59" selection-end-line="178" selection-end-column="59" />
+          <caret line="178" column="59" lean-forward="false" selection-start-line="178" selection-start-column="59" selection-end-line="178" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -728,20 +697,17 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -749,7 +715,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1746">
-          <caret line="97" column="36" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
+          <caret line="97" column="36" lean-forward="false" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -757,20 +723,17 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -778,7 +741,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
-          <caret line="95" column="1" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
+          <caret line="95" column="1" lean-forward="false" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -786,20 +749,17 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -807,7 +767,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -815,20 +775,17 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -836,7 +793,7 @@
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -844,14 +801,14 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -859,13 +816,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -873,14 +827,14 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -888,13 +842,10 @@
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -903,37 +854,42 @@
     <entry file="file://$PROJECT_DIR$/../../../Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nngs.h">
+    <entry file="file://$PROJECT_DIR$/../../build.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="46" selection-end-column="10" />
+        <state relative-caret-position="558">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nngs.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
+        <state relative-caret-position="216">
+          <caret line="60" column="37" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
           <folding>
-            <element signature="e#15257#15504#0" expanded="false" />
-            <element signature="e#15506#15731#0" expanded="false" />
-            <element signature="e#15733#15951#0" expanded="false" />
-            <element signature="e#15953#16088#0" expanded="false" />
-            <element signature="e#16514#16678#0" expanded="false" />
+            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#7515#7934#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nngs.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
