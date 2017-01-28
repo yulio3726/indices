@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/sss.iml" filepath="$PROJECT_DIR$/.idea/sss.iml" />
       <module fileurl="file://$USER_HOME$/metricSpaces/src/indexes/sss/.idea/ssss.iml" filepath="$USER_HOME$/metricSpaces/src/indexes/sss/.idea/ssss.iml" />
     </modules>
   </component>

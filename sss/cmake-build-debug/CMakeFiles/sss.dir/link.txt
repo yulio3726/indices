@@ -1,0 +1,1 @@
+/usr/bin/cc  -g   CMakeFiles/sss.dir/sss.c.o  -o sss 

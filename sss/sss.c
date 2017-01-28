@@ -31,60 +31,73 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     Tdist d1;
     Tdist d2;
 
-    float recall;
-    float sumaRecall;
+    float recall=0;
+    float sumaRecall=0;
 
     G = malloc (sizeof(ssss));
 
     G->descr = malloc(strlen(dbname) + 1);
     strcpy(G->descr, dbname);
+    printf("\n\t nombre de la bd");
 
     G->nBaseDatos = openDB(G->descr);
 
     if (n && (n < G->nBaseDatos)) G->nBaseDatos = n;
+    printf("\n\t se sabe cuantos elementos indexar");
 
     G->nHiperPlanos = atoi((*argv[0]));
     (*argc)--;
     (*argv)++;
 
-    G->pivots = malloc(sizeof(pivot) * G->nHiperPlanos);
-    G -> sketches = malloc(sizeof(unsigned int) * G->nBaseDatos); //los primeros 32 bits
+    printf("\n\t se reserva la memoria necesaria");
+    G->pivots = (pivot*)malloc(sizeof(pivot) * G->nHiperPlanos);
+    printf("\n\t se reserva el espacio para los pivotes");
+    G -> sketches = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos); //los primeros 32 bits
+    printf("\n\t se reserva memoria para los primeros sketches");
+    if (G->nHiperPlanos > 32)
+        G->sketchesPart2 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf("1");
 
-    if ((G->nHiperPlanos > 32))
-        G->sketchesPart2 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    if (G->nHiperPlanos > 64)
+        G->sketchesPart3 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
 
-    if ((G->nHiperPlanos > 64))
-        G->sketchesPart3 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 2");
+    if (G->nHiperPlanos > 96)
+        G->sketchesPart4 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
 
-    if ((G->nHiperPlanos > 96)) {
-        G->sketchesPart4 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 3");
+    if (G->nHiperPlanos > 128){
+        G->sketchesPart5 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 128)) {
-        G->sketchesPart5 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 4");
+    if (G->nHiperPlanos > 160){
+        G->sketchesPart6 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 160)) {
-        G->sketchesPart6 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 5");
+    if (G->nHiperPlanos > 192) {
+        G->sketchesPart7 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 192)) {
-        G->sketchesPart7 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 6");
+    if (G->nHiperPlanos > 224) {
+        G->sketchesPart8 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 224)) {
-        G->sketchesPart8 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 7");
+    if (G->nHiperPlanos > 256) {
+        G->sketchesPart9 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 256)) {
-        G->sketchesPart9 = malloc(sizeof(unsigned int) * G->nBaseDatos);
+    printf(" 8");
+    if (G->nHiperPlanos > 288) {
+        G->sketchesPart10 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    if ((G->nHiperPlanos > 288)) {
-        G->sketchesPart10 = malloc(sizeof(unsigned int) * G->nBaseDatos);
-    }
-
+    printf("\n\t se han reservado el espacio de memoria\n");
     seleccionaPivotes(G);
+    printf("\n\t se han seleccionado los pivotes\n");
 
     i = 0;
     posicion = 0;
@@ -174,7 +187,7 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
-    objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta);
+    objetosConsulta = (Obj*) malloc( sizeof (Obj) * nObjetoConsulta);
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
 
     //printf("empiezan las consultas");
@@ -201,45 +214,53 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
 void seleccionaPivotes(ssss* N){
 
-    int i;
-    int j;
+    printf("\n\t entro a selecciona pivotes");
+    int i = 0;
+    int j = 0;
     int tArregloPivotes = 1500;
-    int encontrados;
-    int temp;
+    int encontrados=0;
+    int temp = 0;
 
+    printf("\n\t 1");
     Obj *arregloPivotes; //arreglo de objetos pivotes
 
-    float m;
+    printf("\n\t 2");
+    float m = 0;
     float alfa = 0.4;
-    float mAlfa;
+    float mAlfa = 0;
 
-    Tdist d;
-
-    srand( time( NULL ) );
-
+    printf("\n\t 3");
+    Tdist d = 0;
+    printf("\n\t 4");
     m = calculaM(N -> nBaseDatos);
+    printf("\n\t salgo calcula m");
     mAlfa = m * alfa;
 
-    arregloPivotes = malloc(sizeof(Obj) * tArregloPivotes);
-
+    arregloPivotes = (Obj*)malloc(sizeof(Obj) * tArregloPivotes);
+    srand( time( NULL ) );
     arregloPivotes[0] = rand() %N -> nBaseDatos + 1; //incializo el arreglo
     encontrados = 1;
 
     for(i = 1; i <= N -> nBaseDatos; i++){
+        if(i < 100)
+            printf("\n\t encontrados = %i i = %d", encontrados, i );
         for(j = 0; j < encontrados; j++){
             d = distance( i, arregloPivotes[j]);
             if( d >= mAlfa){
-               temp = encontrados + 1;
-                arregloPivotes[temp-1] = i;
+               //temp = encontrados + 1;
+                //arregloPivotes[temp-1] = i;
+                arregloPivotes[encontrados] = i;
+                encontrados = encontrados + 1;
+                j = encontrados;//para que rompa el ciclo
             }
         }
 
-        encontrados = temp;
+        //encontrados = temp;
         if(encontrados == (tArregloPivotes)) //por si ya encontre los t objetos lejanos que buscaba
             i = N ->nBaseDatos + 1; //para que rompa el ciclo
     }
 
-    printf("encontrados %d\n",encontrados);
+    printf("\nencontrados %d",encontrados);
 
     for(i = 0; i < N -> nHiperPlanos; i++){
         N -> pivots[i].po1 = arregloPivotes[rand() % encontrados];
@@ -252,10 +273,10 @@ void seleccionaPivotes(ssss* N){
 
 
 float calculaM(int nBD){
+    printf("\n\t entro a calcula m");
+    float dLejana=0;
 
-    float dLejana;
-
-    int iteraciones = 4000;//10 * (nBD/100);
+    int iteraciones = 4000;
     int i;
     int j;
 
@@ -263,7 +284,7 @@ float calculaM(int nBD){
     Obj uLejano;
 
     Tdist d;
-
+    srand( time( NULL ) );
     x1 = rand() %nBD + 1;
 
     for(j = 0; j < iteraciones; j++){
