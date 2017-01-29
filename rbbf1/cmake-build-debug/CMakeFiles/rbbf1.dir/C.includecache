@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cesar/SISAP/src/basics.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+sys/types.h
+-
+obj.h
+/home/cesar/SISAP/src/obj.h
+
+/home/cesar/SISAP/src/index.h
+obj.h
+/home/cesar/SISAP/src/obj.h
+
+/home/cesar/SISAP/src/indexes/rbbf1/rbbf1.c
+time.h
+-
+stdlib.h
+-
+rbbf1.h
+/home/cesar/SISAP/src/indexes/rbbf1/rbbf1.h
+
+/home/cesar/SISAP/src/indexes/rbbf1/rbbf1.h
+../../basics.h
+/home/cesar/SISAP/src/basics.h
+../../index.h
+/home/cesar/SISAP/src/index.h
+
+/home/cesar/SISAP/src/obj.h
+basics.h
+/home/cesar/SISAP/src/basics.h
+

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "rbbf1.h"
 
-float kNN(rbbf1* S, int k, int porcentaje, Obj q);
+//float kNN(rbbf1* S, int k, int porcentaje, Obj q);
 
 Index build (char *dbname, int n, int *argc, char ***argv) {
 
@@ -21,19 +21,18 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     int dimension;
     int k = 10;
     int posicion;
-    int nObjetoConsulta = 100;
-    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nObjetoConsulta = 150;
+    int porcentaje[] = {1,3,5,7,9};
     int nPorcentaje = 5;
-    int j;
+
 
     Obj *objetosConsulta;
     Obj u;
 
-    Tdist d1;
-    Tdist d2;
+    Tdist d1 = 0;
+    Tdist d2 = 0;
 
-    float recall;
-    float sumaRecall;
+    float recallPorcentaje[]={0,0,0,0,0}; //0 : error de posicion  1: recall
 
     G = malloc (sizeof(rbbf1));
 
@@ -47,6 +46,8 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     G -> nHiperPlanos = atoi( ( *argv[0] ) );
     (*argc)--;
     (*argv)++;
+
+    int f=0;
 
     G -> pivots = malloc( sizeof( pivot ) * G -> nHiperPlanos);
     G -> sketches = malloc( sizeof( unsigned int ) * G -> nBaseDatos); //los primeros 32 bits
@@ -175,14 +176,25 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
-    //printf("Empiezan las consultas\n");
+    printf("Empiezan las consultas\n");
     objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta); //se seleccionana los objetos para la consulta
     //printf("Se reservan los espacios para los objetos de las consultas\n");
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
+    //inicializaRecallPorcentaje(&recallPorcentaje, nPorcentaje);
 
-    for(i = 0; i < nPorcentaje; i++){ //para que revise todos los porcentajes
+    for(i = 0; i < nObjetoConsulta; i++){
+        kNN(G, k, objetosConsulta[i], &recallPorcentaje);
+    }
+
+    printf("\n\tresultados finales\n");
+    for(i = 0; i < nPorcentaje; i++){
+        printf(" %d.- %d promedio recall %f\n",i, porcentaje[i], recallPorcentaje[i]/nObjetoConsulta);
+    }
+
+
+/*    for(i = 0; i < nPorcentaje; i++){ //para que revise todos los porcentajes
         //printf("reviso el porcentaje %d\n", porcentaje[i]);
         sumaRecall = 0;
 
@@ -195,7 +207,7 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
         printf("\t %d Promedio recall %f\n", porcentaje[i], sumaRecall/nObjetoConsulta);
     }
-
+*/
     free(G -> sketches);
     free(G -> pivots);
     free(G);
@@ -205,49 +217,10 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
 }
 
-void seleccionaPivotes(rbbf1* N){
-
-    int i;
-    srand( time( NULL ) );
-
-    for(i = 0; i < N -> nHiperPlanos; i++){
-        N -> pivots[i].po1 = rand() %N -> nBaseDatos + 1;
-        N -> pivots[i].po2 = rand() %N -> nBaseDatos +1;
-    }
-
-}
-
 
 int hamming(unsigned int a, unsigned int b){
 
     return ( __builtin_popcount( a ^ b ) );
-
-}
-
-
-void muestraSketch(unsigned int s){
-
-    //printf(" lo que quiero mostrar tiene el tañamo de: %d", sizeof(s));
-    int g = 0;
-    for( g ; g < sizeof(s)*8; g++){
-        printf( "%u", ( s >> g) & 1 );
-    }
-
-    printf("\n");
-
-}
-
-
-void muestraPivotes(rbbf1* N){
-
-    int i = 0;
-
-    printf("Los pivotes son: \n\n");
-
-    for(i; i < N -> nHiperPlanos; i++){
-        printf("%i po1: %d ", i, N -> pivots[i].po1);
-        printf( "po2: %d", N -> pivots[i].po2);
-    }
 
 }
 
@@ -276,7 +249,7 @@ void freeIndex (Index S, bool libobj){
 }
 
 
-float kNN(rbbf1* G, int k, int porcentaje, Obj q){
+void kNN(rbbf1* G, int k, Obj q, float* recallPorcentaje){
 
     consulta *distanciaHamming = NULL;
 
@@ -287,6 +260,8 @@ float kNN(rbbf1* G, int k, int porcentaje, Obj q){
     int i;
     int interseccion = 0;
     int objetivo = 0;
+    int porcentaje[] = { 1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
 
     int *resultado;
     int *kCandidatosAprox = NULL;
@@ -343,215 +318,53 @@ float kNN(rbbf1* G, int k, int porcentaje, Obj q){
 
     qsort( distanciaHamming, G -> nBaseDatos, sizeof( consulta ) , cmpfunc); //se ordenan las distancias de hammign entre el objeto q y ui
 
-    kPorcentaje = porcentaje * (G -> nBaseDatos / 100) ; //se calcula el nemero de objetos a revisar
+    int a = 0;
 
-    distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
-    workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming); // se calculan las distancias reales entre los objetos propuestos y la consulta
-    qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
 
-    distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * G -> nBaseDatos);
-    calculaDistanciaReal(distanciaReal, G -> nBaseDatos, q);
+    distanciaReal = (consultaReal *) malloc(sizeof(consultaReal) * G->nBaseDatos);
+    calculaDistanciaReal(distanciaReal, G->nBaseDatos, q);
 
-    qsort( distanciaReal, G -> nBaseDatos, sizeof( consultaReal ) , cmpfuncFloat);;
+    qsort(distanciaReal, G->nBaseDatos, sizeof(consultaReal), cmpfuncFloat);
 
-    kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
-    kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
+    for(a = 0; a < nPorcentaje; a++) {
+        kPorcentaje = porcentaje[a] * (G->nBaseDatos / 100); //se calcula el nemero de objetos a revisar
 
-    calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
+        distanciaRealAprox = (consultaReal *) malloc(sizeof(consultaReal) * kPorcentaje);
+        workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming); // se calculan las distancias reales entre los objetos propuestos y la consulta
+        qsort(distanciaRealAprox, kPorcentaje, sizeof(consultaReal), cmpfuncFloat);
 
-    qsort( kCandidatosReal, k, sizeof( int ) , compara);
+        kCandidatosAprox = (int *) malloc(sizeof(int) * k);
+        kCandidatosReal = (int *) malloc(sizeof(int) * k);
 
-    for(i = 0; i < k; i++){
+        calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
 
-        objetivo = kCandidatosAprox[i];
-        resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
+        qsort(kCandidatosReal, k, sizeof(int), compara);
 
-        if( resultado != NULL){
-            interseccion++;
+        interseccion = 0 ;
+        resultado = 0;
+        recall = 0;
+
+        for (i = 0; i < k; i++) {
+
+            objetivo = kCandidatosAprox[i];
+            resultado = (int *) bsearch(&objetivo, kCandidatosReal, k, sizeof(int), compara);
+
+            if (resultado != NULL) {
+                interseccion++;
+            }
         }
+
+        recall = ((float) interseccion / (float) k) * 100;
+
+        recallPorcentaje[a] = recallPorcentaje[a] + recall;
+
+        free(distanciaRealAprox)
+        free(kCandidatosAprox);
+        free(kCandidatosReal);
     }
 
-    recall = ((float) interseccion / (float) k) * 100;
-
-    free(distanciaRealAprox)
-    free(kCandidatosAprox);
-    free(kCandidatosReal);
-    free(distanciaHamming);
     free(distanciaReal);
-
-    return recall;
-}
-
-
-void generaSketch(sketchQ* sQ, Obj u, pivot* pivots, int nHiperPlanos) {
-
-    Tdist d1;
-    Tdist d2;
-
-    int dimension;
-    int posicion = 0;
-
-    unsigned int s = 0;
-
-
-    for (dimension = 0; dimension < nHiperPlanos; dimension++) {
-
-        d1 = distance(u, pivots[dimension].po1);
-        d2 = distance(u, pivots[dimension].po2);
-
-        if (d1 <= d2) {
-
-            if (dimension < 32) {
-                s ^= (-1 ^ s) & (1 << dimension);
-                sQ->sketches = s;
-            }
-
-            if (dimension == 32)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 32) && (dimension < 64)) {
-                posicion = dimension - 32;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart2 = s;
-            }
-
-            if (dimension == 64)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 64) && (dimension < 96)) {
-                posicion = dimension - 64;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart3 = s;
-            }
-
-            if (dimension == 96)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 96) && (dimension < 128)) {
-                posicion = dimension - 96;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart4 = s;
-            }
-
-            if (dimension == 128)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 128) && (dimension < 160)) {
-                posicion = dimension - 128;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart5 = s;
-            }
-
-            if (dimension == 160)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 160) && (dimension < 192)) {
-                posicion = dimension - 160;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart6 = s;
-            }
-
-            if (dimension == 192)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 192) && (dimension < 224)) {
-                posicion = dimension - 192;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart7 = s;
-            }
-
-            if (dimension == 224)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 224) && (dimension < 256)) {
-                posicion = dimension - 224;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart8 = s;
-            }
-
-            if (dimension == 256)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 256) && (dimension < 288)) {
-                posicion = dimension - 256;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart9 = s;
-            }
-
-            if (dimension == 288)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 288) && (dimension < 320)) {
-                posicion = dimension - 288;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ->sketchesPart10 = s;
-            }
-
-        }
-    }
-}
-
-
-void muestraArregloEntero(consulta* distanciaUQ, int nBaseDatos){
-
-    int i;
-
-    for(i = 0; i < nBaseDatos ; i++){
-        printf("[%d]  distancia: %d  objeto: %d\n", i, distanciaUQ[i].distanciaQ, distanciaUQ[i].o);
-    }
+    free(distanciaHamming);
 
 }
 
-
-void calculaDistanciaReal(consultaReal* distanciaReal, int n, Obj q){
-
-    int i;
-    Obj u;
-
-    for(i = 0; i < n; i++) {
-        u = i + 1;
-        distanciaReal[i].distanciaQ = distance(q,u);
-        distanciaReal[i].o = u;
-    }
-
-}
-
-
-void muestraArregloFlotante(consultaReal* distanciaReal, int n){
-
-    int i;
-
-    for(i = 0; i < n; i++){
-        printf("[%d]  distancia: %f  objeto: %d\n", i, distanciaReal[i].distanciaQ, distanciaReal[i].o);
-    }
-
-}
-
-
-void calculaCandidatos(consultaReal* distanciaReal, consultaReal* distanciaRealAprox, int* kCandidatosAprox, int* kCandidatosReal , int k){
-
-    int i;
-
-    for(i = 0; i < k; i++){
-       // printf("i [%d] aprox %d real %d\n",i, distanciaHamming[i].o,distanciaReal[i].o);
-        kCandidatosAprox[i] = distanciaRealAprox[i].o;
-        kCandidatosReal[i] = distanciaReal[i].o;
-        //printf("i [%d] aprox %d real %d\n\n",i, kCandidatosAprox[i], kCandidatosReales[i]);
-    }
-
-}
-
-
-void muestraCandidatos(int* kCandidatosAprox, int* kCandidatosReal, int k){
-
-    int i;
-
-    for(i = 0; i < k; i++){
-
-        printf("[%d]  Aprox: %d Real: %d\n",i ,kCandidatosAprox[i], kCandidatosReal[i]);
-
-    }
-}
-
-
-void workload(int kPorcentaje, Obj q, consultaReal* distanciaRealAprox, consulta* distanciaHamming){
-
-    int i;
-
-    for(i = 0; i < kPorcentaje; i++){
-        distanciaRealAprox[i].distanciaQ = distance( distanciaHamming[i].o, q);
-        distanciaRealAprox[i].o = distanciaHamming[i].o;
-    }
-
-}
