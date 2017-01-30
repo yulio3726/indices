@@ -23,19 +23,18 @@ Index build(char *dbname, int n, int *argc, char ***argv){
     int nVeces = 400;//Por
     int k = 10;
     int posicion;
-    int nObjetoConsulta = 100;
+    int nObjetoConsulta = 150;
     int porcentaje[] = { 1, 3, 5, 7, 9};
     int nPorcentaje = 5;
-    int j;
+
 
     Obj *objetosConsulta;
     Obj u;
 
-    Tdist d1;
-    Tdist d2;
+    Tdist d1 = 0;
+    Tdist d2 = 0;
 
-    float recall;
-    float sumaRecall;
+    float recallPorcentaje[]={0,0,0,0,0};
 
     S = ( ghs* )malloc( sizeof(ghs));
     S -> descr = (char*) malloc( strlen (dbname) + 1 );
@@ -177,12 +176,22 @@ Index build(char *dbname, int n, int *argc, char ***argv){
 
     }
 
+    printf("\n\t EMPIEZAN LAS PRUEBAS\n");
+
     objetosConsulta = (Obj *) malloc( sizeof (Obj) * nObjetoConsulta); //decia n en luagar de nobjetisconsulta
     generaConsultas(objetosConsulta, nObjetoConsulta, S -> nBD);
     //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
-    //printf("\nevaluando\n");
+    for(i = 0; i < nObjetoConsulta; i++){
+        kNN(S, k, objetosConsulta[i], &recallPorcentaje);
+    }
+
+    printf("\n\tresultados finales\n");
     for(i = 0; i < nPorcentaje; i++){
+        printf(" %d.- %d promedio recall %f\n",i, porcentaje[i], recallPorcentaje[i]/nObjetoConsulta);
+    }
+
+/*    for(i = 0; i < nPorcentaje; i++){
 
         sumaRecall = 0;
 
@@ -192,7 +201,7 @@ Index build(char *dbname, int n, int *argc, char ***argv){
         }
 
         printf("\t %d Promedio recall %f\n", porcentaje[i], sumaRecall/nObjetoConsulta);
-    }
+    }*/
 
 
     free( S -> descr );
@@ -366,258 +375,121 @@ void muestraPivotes(ghs* S){
 }
 
 
-float kNN(ghs* S, int k, int porcentaje, Obj q){
+void kNN(ghs* S, int k, Obj q, float* recallPorcentaje) {
 
     consulta *distanciaHamming = NULL;
-    //consulta *distanciaHamming2 = NULL;
 
-    consultaReal* distanciaRealAprox = NULL;
+    consultaReal *distanciaRealAprox = NULL;
     consultaReal *distanciaReal = NULL;
 
-    int kPorcentaje;
-    int i;
+    int kPorcentaje = 0;
+    int i = 0;
     int interseccion = 0;
     int objetivo = 0;
+    int porcentaje[] = {1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
 
     int *kCandidatosAprox = NULL;
     int *kCandidatosReal = NULL;
     int *resultado = NULL;
 
-    float recall;
+    float recall = 0;
 
     sketchQ sQ;
 
-    int dist;
+    int dist = 0;
 
-    generaSketch(&sQ, q, S -> pivots, S -> nHiperplanos);
+    generaSketch(&sQ, q, S->pivots, S->nHiperplanos);
 
-    //printf("\nya genere sketches\n");
-    //printf("\ntamaño de la bd %d\n", S -> nBD);
 
-    distanciaHamming = ( consulta* ) malloc( sizeof(consulta) * S -> nBD);
+    distanciaHamming = (consulta *) malloc(sizeof(consulta) * S->nBD);
 
-    //distanciaHamming2 = ( consulta* ) malloc( sizeof(consulta) * S -> nBD);
-    //printf("\nya estoy por aca\n");
-    //printf("\n otra impresion\n");
+    for (i = 0; i < S->nBD; i++) {
 
-    for( i = 0 ;i < S -> nBD; i++){
+        dist = hamming(sQ.sketches, S->sketches[i]);//el que se calcula por defecto
 
-        dist = hamming( sQ.sketches , S -> sketches[i]);//el que se calcula por defecto
+        if (S->nHiperplanos > 32)
+            dist = dist + hamming(sQ.sketchesPart2, S->sketchesPart2[i]);
 
-        if( S ->  nHiperplanos > 32 )
-            dist = dist + hamming( sQ.sketchesPart2 , S -> sketchesPart2[i]);
+        if (S->nHiperplanos > 64)
+            dist = dist + hamming(sQ.sketchesPart3, S->sketchesPart3[i]);
 
-        if( S ->  nHiperplanos > 64 )
-            dist = dist + hamming( sQ.sketchesPart3 , S -> sketchesPart3[i]);
+        if (S->nHiperplanos > 96)
+            dist = dist + hamming(sQ.sketchesPart4, S->sketchesPart4[i]);
 
-        if( S ->  nHiperplanos > 96 )
-            dist = dist + hamming( sQ.sketchesPart4 , S -> sketchesPart4[i]);
+        if (S->nHiperplanos > 128)
+            dist = dist + hamming(sQ.sketchesPart5, S->sketchesPart5[i]);
 
-        if( S ->  nHiperplanos > 128 )
-            dist = dist + hamming( sQ.sketchesPart5 , S -> sketchesPart5[i]);
+        if (S->nHiperplanos > 160)
+            dist = dist + hamming(sQ.sketchesPart6, S->sketchesPart6[i]);
 
-        if( S ->  nHiperplanos > 160 )
-            dist = dist + hamming( sQ.sketchesPart6 , S -> sketchesPart6[i]);
+        if (S->nHiperplanos > 192)
+            dist = dist + hamming(sQ.sketchesPart7, S->sketchesPart7[i]);
 
-        if( S ->  nHiperplanos > 192 )
-            dist = dist + hamming( sQ.sketchesPart7 , S -> sketchesPart7[i]);
+        if (S->nHiperplanos > 224)
+            dist = dist + hamming(sQ.sketchesPart8, S->sketchesPart8[i]);
 
-        if( S ->  nHiperplanos > 224 )
-            dist = dist + hamming( sQ.sketchesPart8 , S -> sketchesPart8[i]);
+        if (S->nHiperplanos > 256)
+            dist = dist + hamming(sQ.sketchesPart9, S->sketchesPart9[i]);
 
-        if( S ->  nHiperplanos > 256 )
-            dist = dist + hamming( sQ.sketchesPart9 , S -> sketchesPart9[i]);
-
-        if( S ->  nHiperplanos > 288 )
-            dist = dist + hamming( sQ.sketchesPart10 , S -> sketchesPart10[i]);
+        if (S->nHiperplanos > 288)
+            dist = dist + hamming(sQ.sketchesPart10, S->sketchesPart10[i]);
 
         distanciaHamming[i].distanciaQ = dist;
-        distanciaHamming[i].o = i+1;
+        distanciaHamming[i].o = i + 1;
 
     }
 
-    qsort( distanciaHamming, S -> nBD, sizeof( consulta ) , cmpfunc);
+    qsort(distanciaHamming, S->nBD, sizeof(consulta), cmpfunc);
 
-    kPorcentaje = porcentaje * (S -> nBD / 100);
+    int a = 0;
 
-    distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
-    workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
-    qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
+    distanciaReal = (consultaReal *) malloc(sizeof(consultaReal) * S->nBD);
+    calculaDistanciaReal(distanciaReal, S->nBD, q);
+    qsort(distanciaReal, S->nBD, sizeof(consultaReal), cmpfuncFloat);
 
-    distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * S -> nBD);
-    calculaDistanciaReal(distanciaReal, S -> nBD, q);
-    qsort( distanciaReal, S -> nBD, sizeof( consultaReal ), cmpfuncFloat);
+    for (a = 0; a < nPorcentaje; a++) {
+        kPorcentaje = porcentaje[a] * (S->nBD / 100);
 
-    kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
-    kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
+        distanciaRealAprox = (consultaReal *) malloc(sizeof(consultaReal) * kPorcentaje);
+        workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
+        qsort(distanciaRealAprox, kPorcentaje, sizeof(consultaReal), cmpfuncFloat);
 
-    calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
-    qsort( kCandidatosReal, k, sizeof( int ) , compara);
+        kCandidatosAprox = (int *) malloc(sizeof(int) * k);
+        kCandidatosReal = (int *) malloc(sizeof(int) * k);
 
-    for(i = 0; i < k; i++){
+        calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
+        qsort(kCandidatosReal, k, sizeof(int), compara);
 
-        objetivo = kCandidatosAprox[i];
-        resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
-        if( resultado != NULL){
-            interseccion++;
+        interseccion = 0;
+        resultado = 0;
+        recall = 0;
+
+        for (i = 0; i < k; i++) {
+
+            objetivo = kCandidatosAprox[i];
+            resultado = (int *) bsearch(&objetivo, kCandidatosReal, k, sizeof(int), compara);
+
+            if (resultado != NULL) {
+                interseccion++;
+            }
         }
+
+        recall = ((float) interseccion / (float) k) * 100;
+        recallPorcentaje[a]=recallPorcentaje[a] + recall;
+
+        free(distanciaRealAprox);
+        free(kCandidatosAprox);
+        free(kCandidatosReal);
     }
 
-    recall = ((float) interseccion / (float) k) * 100;
-
-    free(distanciaRealAprox)
-    free(kCandidatosAprox);
-    free(kCandidatosReal);
     free(distanciaHamming);
     free(distanciaReal);
 
-    return recall;
-
 }
-
-
-void generaSketch(sketchQ* sQ, Obj u, pivot* pivots, int nHiperPlanos){
-
-    Tdist d1;
-    Tdist d2;
-
-    int dimension;
-    int posicion = 0;
-
-    unsigned int s = 0;
-
-    for( dimension = 0; dimension < nHiperPlanos; dimension++){
-
-        d1 = distance( u, pivots[dimension].po1 );
-        d2 = distance( u, pivots[dimension].po2 );
-
-        if( d1 <= d2 ){
-
-            if (dimension < 32) {
-                s ^= (-1 ^ s) & (1 << dimension);
-                sQ -> sketches = s;
-            }
-
-            if (dimension == 32)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 32) && (dimension < 64)) {
-                posicion = dimension - 32;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart2 = s;
-            }
-
-            if (dimension == 64)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 64) && (dimension < 96)) {
-                posicion = dimension - 64;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart3 = s;
-            }
-
-            if (dimension == 96)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 96) && (dimension < 128)) {
-                posicion = dimension - 96;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart4 = s;
-            }
-
-            if (dimension == 128)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 128) && (dimension < 160)) {
-                posicion = dimension - 128;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart5 = s;
-            }
-
-            if (dimension == 160)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 160) && (dimension < 192)) {
-                posicion = dimension - 160;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart6 = s;
-            }
-
-            if (dimension == 192)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 192) && (dimension < 224)) {
-                posicion = dimension - 192;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart7 = s;
-            }
-
-            if (dimension == 224)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 224) && (dimension < 256)) {
-                posicion = dimension - 224;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart8 = s;
-            }
-
-            if (dimension == 256)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 256) && (dimension < 288)) {
-                posicion = dimension - 256;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart9 = s;
-            }
-
-            if (dimension == 288)//hay que reiniciar
-                s = 0;
-            if ((dimension >= 288) && (dimension < 320)) {
-                posicion = dimension - 288;
-                s ^= (-1 ^ s) & (1 << posicion);
-                sQ -> sketchesPart10 = s;
-            }
-
-        }
-
-    }
-
-}
-
 
 int hamming(unsigned int a, unsigned int b){
 
     return ( __builtin_popcount( a ^ b ) );
-
-}
-
-
-void workload(int kPorcentaje, Obj q, consultaReal* distanciaRealAprox, consulta* distanciaHamming){
-
-    int i;
-
-    for(i = 0; i < kPorcentaje; i++){
-        distanciaRealAprox[i].distanciaQ = distance( distanciaHamming[i].o, q);
-        distanciaRealAprox[i].o = distanciaHamming[i].o;
-    }
-
-}
-
-
-void calculaDistanciaReal(consultaReal* distanciaReal, int n, Obj q){
-
-    int i;
-
-    Obj u;
-
-    for(i = 0; i < n; i++) {
-        u = i + 1;
-        distanciaReal[i].distanciaQ = distance(q,u);
-        distanciaReal[i].o = u;
-    }
-
-}
-
-
-void calculaCandidatos(consultaReal* distanciaReal, consultaReal* distanciaRealAprox, int* kCandidatosAprox, int* kCandidatosReal , int k){
-
-    int i;
-
-    for(i = 0; i < k; i++){
-        kCandidatosAprox[i] = distanciaRealAprox[i].o;
-        kCandidatosReal[i] = distanciaReal[i].o;
-    }
 
 }
