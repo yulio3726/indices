@@ -66,7 +66,7 @@ typedef struct{
 }sketchQ;
 
 /*definiciones*/
-float kNN(ssss* S, int k, int porcentaje, Obj q);
+
 
 /* Funciones */
 

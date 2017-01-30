@@ -7,8 +7,6 @@
 #include <math.h>
 #include "nngs.h"
 
-float kNN(swe* G, int k, int porcentaje, Obj q);
-
 Index build (char *dbname, int n, int *argc, char ***argv){
 
     if (*argc < 1){
@@ -18,37 +16,34 @@ Index build (char *dbname, int n, int *argc, char ***argv){
 
     swe *G;
 
-    int i;
-    int j;
-    int dimension;
+    int i = 0;
+    int j = 0;
+    int dimension = 0;
     int k = 10;
     int posicion;
-    int nObjetoConsulta = 200;
-
-    //int porcentaje[] = { 3, 5, 10, 15, 20, 23};
+    int nObjetoConsulta = 150;
     int porcentaje[] = { 1, 3, 5, 7, 9};
-    int nProcentaje = 5;
+    int nPorcentaje = 5;
 
     Obj *objetosConsulta;
     Obj u;
 
-    float recall;
-    float sumaRecall;
-    float sumaProductoPunto;
+    float recallPorcentaje[]={0,0,0,0,0};
+    float sumaProductoPunto = 0;
 
     G = malloc( sizeof ( swe ) );
 
     G -> descr = malloc( strlen ( dbname) +1 );
     strcpy( G -> descr, dbname);
-    printf("\n\t name db");
+    //printf("\n\t name db");
 
     G -> nBD = openDB( G -> descr);
-    printf("\n\t open db");
+    //printf("\n\t open db");
 
     if( n && (n < G -> nBD) ) G -> nBD = n;
 
     G -> m = atoi( *argv[0] );
-    printf("\n\t parametro m = numero de pivotes");
+    //printf("\n\t parametro m = numero de pivotes");
 
     (*argc) --;
     (*argv)++;
@@ -56,7 +51,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     G -> l = atoi( *argv[0] );
     (*argc) --;
     (*argv)++;
-    printf("\n\t parametro l = longitud de los sketches");
+    //printf("\n\t parametro l = longitud de los sketches");
 
     G -> pivotes = malloc( sizeof(Obj) * G -> m);
     G -> sketches = malloc( sizeof( unsigned int ) * G -> nBD );
@@ -114,21 +109,13 @@ Index build (char *dbname, int n, int *argc, char ***argv){
     //construyeMHeuristica3(G); //ninimo m/2 unos por renglon
     construyeMHeuristica4(G);//el min de {m/2. log(n)+ log(m/2)}
 
-    //muestraM(G);
-    //return (Index) G;
-
     G -> b = (float*) malloc( sizeof (float) * G -> l);
     construyeB(G);
-    //muestraB(G);
 
     i = 0;
 
-    //printf("\n\n/****************************************/\n\n");
-   // printf("construyendo el indice\n");
-
     while( i < G -> nBD){ //G -> nBD
         i++;
-      //  printf("objeto %d: ", i);
         u = i;
 
             G -> sketches[u-1] = 0;
@@ -158,7 +145,6 @@ Index build (char *dbname, int n, int *argc, char ***argv){
             }
 
             if( (sumaProductoPunto - G -> b[dimension]) > 0){
-              //  printf(" 1");
                 if (dimension < 32) {
                     G -> sketches[i - 1] ^= (-1 ^ G -> sketches[i - 1]) & (1 << dimension);
                 }
@@ -208,21 +194,25 @@ Index build (char *dbname, int n, int *argc, char ***argv){
                     G -> sketchesPart10[i - 1] ^= (-1 ^ G -> sketchesPart10[i - 1]) & (1 << posicion);
 
                 }
-            }// else
-          //      printf(" 0");
+            }
         }
-        //printf("\n");
+
     }
 
-    //printf("\n/****************/\n");
-    //printf("\nconsultas\n");
+    printf("\n\t EMPIEZAN LAS PRUEBAS\n");
     objetosConsulta = (Obj *)malloc( sizeof(Obj) * nObjetoConsulta);
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBD);
-    //muestraObjetosConsulta(objetosConsulta, nObjetoConsulta);
 
-  //  printf("\n\n/**************************************/\n");
-   // printf("calculo de precicion\n\n");
+    for(i = 0; i < nObjetoConsulta; i++){
+        kNN(G, k, objetosConsulta[i], &recallPorcentaje);
+    }
 
+    printf("\n\tresultados finales\n");
+    for(i = 0; i < nPorcentaje; i++){
+        printf(" %d.- %d promedio recall %f\n",i, porcentaje[i], recallPorcentaje[i]/nObjetoConsulta);
+    }
+
+    /*
     for(i = 0; i < nProcentaje; i++){
 
         sumaRecall = 0;
@@ -236,7 +226,7 @@ Index build (char *dbname, int n, int *argc, char ***argv){
         printf("\n");
 
         printf("\t %d Promedio recall %f\n\n", porcentaje[i], sumaRecall/nObjetoConsulta);
-    }
+    }*/
 
 /*    sumaRecall = 0;
 
@@ -354,7 +344,7 @@ void muestraB(swe* G){
 
 }
 
-float kNN(swe* G, int k, int porcentaje, Obj q){
+void kNN(swe* G, int k, Obj q, float* recallPorcentaje){
 
     consulta *distanciaHamming = NULL;
     float *vectorConsulta;
@@ -366,16 +356,18 @@ float kNN(swe* G, int k, int porcentaje, Obj q){
     int i;
     int interseccion = 0;
     int objetivo = 0;
+    int porcentaje[] = {1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
 
     int *kCandidatosAprox = NULL;
     int *kCandidatosReal = NULL;
     int *resultado = NULL;
 
-    float recall;
+    float recall = 0;
 
     sketchQ sQ;
 
-    int dist;
+    int dist = 0;
 
     vectorConsulta = (float*)malloc( sizeof ( float ) * G -> m);
     calculaVectorConsulta(G, q, vectorConsulta);
@@ -424,82 +416,50 @@ float kNN(swe* G, int k, int porcentaje, Obj q){
 
     }
 
-    //printf("\n\n/****************************************/\n");
-    //printf("las distancias calculadas son: \n\n");
-
-    //muestraDistanciaHamming(distanciaHamming, G);
 
     qsort( distanciaHamming, G -> nBD, sizeof( consulta ) , cmpfunc);
 
-   // printf("\n\n/**************************/\n\n");
-    //printf("Las distancias de hammin ordenas son: \n");
-    //muestraDistanciaHamming(distanciaHamming, G);
+    int a = 0;
 
-
-    //printf("\n\n/**************************/\n\n");
-    //printf("para %d\n", porcentaje);
-    //printf("para %d porciento", porcentaje);
-    kPorcentaje = porcentaje * (G -> nBD / 100);// porcentaje; //le modifique porque si no no considera ninguno
-    //printf(" hay que revisar %d\n", kPorcentaje);
-
-
-    distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
-    workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
-    //printf("\n\n/**********************************/\n\n");
-    //printf("Las distancias reales aproximadas sin ordenar son:\n");
-    //muestraDistanciasRealesAprox(distanciaRealAprox, kPorcentaje);
-    qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
-    //printf("\n\n/**********************************/\n\n");
-    //printf("Las distancias reales aproximadas ordenados son:\n");
-    //muestraDistanciasRealesAprox(distanciaRealAprox, kPorcentaje);
-
-    //printf("\n\n/**********************************/\n\n");
-    //printf("Las distancias reales sin ordenar son:\n");
     distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * G -> nBD);
     calculaDistanciaReal(distanciaReal, G -> nBD, q);
-    //muestraDistanciasReales(distanciaReal, G -> nBD);
     qsort( distanciaReal, G -> nBD, sizeof( consultaReal ), cmpfuncFloat);
-    //printf("\n\n/**********************************/\n\n");
-    //printf("Las distancias reales ordenadas son:\n");
-    //muestraDistanciasReales(distanciaReal, G -> nBD);
 
-    //revisar lo del numero de k que se estan pidiendo porque estararo que tenga menos aproximados que mi k
-    kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
-    kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
+    for (a = 0; a < nPorcentaje; a++) {
+        kPorcentaje = porcentaje[a] * (G -> nBD / 100);
+        distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
+        workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
+        qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
 
-    calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
-    //printf("\n\n/*****************************************/\n\n");, k);
-    //printf("Los K candidatos reales no ordenados son:\n");
-    //muestraCandidatos(kCandidatosReal, k);
-    qsort( kCandidatosReal, k, sizeof( int ) , compara);
-    //printf("\n\n/*****************************************/\n\n");
-    //printf("Los K candidatos reales ordenados son:\n");
-    //muestraCandidatos(kCandidatosReal, k);
-   // printf("\n\n/*****************************************/\n\n");
-    //printf("Los K candidatos aproximados ordenados son:\n");
-    //muestraCandidatos(kCandidatosAprox, k);
+        kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
+        kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
 
-    for(i = 0; i < k; i++){
+        calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
+        qsort( kCandidatosReal, k, sizeof( int ) , compara);
 
-        objetivo = kCandidatosAprox[i];
-        resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
-        if( resultado != NULL){
-            interseccion++;
+        interseccion = 0;
+        resultado = 0;
+        recall = 0;
+
+        for(i = 0; i < k; i++){
+
+            objetivo = kCandidatosAprox[i];
+            resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
+            if( resultado != NULL){
+                interseccion++;
+            }
         }
+
+        recall = ((float) interseccion / (float) k) * 100;
+        recallPorcentaje[a]=recallPorcentaje[a] + recall;
+
+        free(distanciaRealAprox)
+        free(kCandidatosAprox);
+        free(kCandidatosReal);
     }
 
-  //  printf("\nla interseccion es %d\n", interseccion);
-    recall = ((float) interseccion / (float) k) * 100;
-    //printf("\n el recall es de %f", recall);
-
-    free(distanciaRealAprox)
-    free(kCandidatosAprox);
-    free(kCandidatosReal);
     free(distanciaHamming);
     free(distanciaReal);
-    //recall = 34;
-
-    return recall;
 
 }
 

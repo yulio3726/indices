@@ -16,11 +16,12 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     }
 
     ssss *G;
+
     int i;
     int dimension;
     int k = 10;
     int posicion;
-    int nObjetoConsulta = 100;
+    int nObjetoConsulta = 150;
     int porcentaje[] = { 1, 3, 5, 7, 9};
     int nPorcentaje = 5;
     int j;
@@ -28,76 +29,75 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
     Obj *objetosConsulta;
     Obj u;
 
-    Tdist d1;
-    Tdist d2;
+    Tdist d1 = 0;
+    Tdist d2 = 0;
 
-    float recall=0;
-    float sumaRecall=0;
+    float recallPorcentaje[]={0,0,0,0,0};
 
     G = malloc (sizeof(ssss));
 
     G->descr = malloc(strlen(dbname) + 1);
     strcpy(G->descr, dbname);
-    printf("\n\t nombre de la bd");
+    //printf("\n\t nombre de la bd");
 
     G->nBaseDatos = openDB(G->descr);
 
     if (n && (n < G->nBaseDatos)) G->nBaseDatos = n;
-    printf("\n\t se sabe cuantos elementos indexar");
+    //printf("\n\t se sabe cuantos elementos indexar");
 
     G->nHiperPlanos = atoi((*argv[0]));
     (*argc)--;
     (*argv)++;
 
-    printf("\n\t se reserva la memoria necesaria");
+    //printf("\n\t se reserva la memoria necesaria");
     G->pivots = (pivot*)malloc(sizeof(pivot) * G->nHiperPlanos);
-    printf("\n\t se reserva el espacio para los pivotes");
+    //printf("\n\t se reserva el espacio para los pivotes");
     G -> sketches = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos); //los primeros 32 bits
-    printf("\n\t se reserva memoria para los primeros sketches");
+    //printf("\n\t se reserva memoria para los primeros sketches");
     if (G->nHiperPlanos > 32)
         G->sketchesPart2 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
-    printf("1");
+    //printf("1");
 
     if (G->nHiperPlanos > 64)
         G->sketchesPart3 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
 
-    printf(" 2");
+    //printf(" 2");
     if (G->nHiperPlanos > 96)
         G->sketchesPart4 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
 
-    printf(" 3");
+    //printf(" 3");
     if (G->nHiperPlanos > 128){
         G->sketchesPart5 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf(" 4");
+    //printf(" 4");
     if (G->nHiperPlanos > 160){
         G->sketchesPart6 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf(" 5");
+    //printf(" 5");
     if (G->nHiperPlanos > 192) {
         G->sketchesPart7 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf(" 6");
+    //printf(" 6");
     if (G->nHiperPlanos > 224) {
         G->sketchesPart8 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf(" 7");
+    //printf(" 7");
     if (G->nHiperPlanos > 256) {
         G->sketchesPart9 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf(" 8");
+    //printf(" 8");
     if (G->nHiperPlanos > 288) {
         G->sketchesPart10 = (unsigned int*)malloc(sizeof(unsigned int) * G->nBaseDatos);
     }
 
-    printf("\n\t se han reservado el espacio de memoria\n");
+    //printf("\n\t se han reservado el espacio de memoria\n");
     seleccionaPivotes(G);
-    printf("\n\t se han seleccionado los pivotes\n");
+    //printf("\n\t se han seleccionado los pivotes\n");
 
     i = 0;
     posicion = 0;
@@ -187,11 +187,19 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
     }
 
+    printf("\n\t EMPIEZAN LAS PRUEBAS\n");
     objetosConsulta = (Obj*) malloc( sizeof (Obj) * nObjetoConsulta);
     generaConsultas(objetosConsulta, nObjetoConsulta, G -> nBaseDatos);
 
-    //printf("empiezan las consultas");
+    for(i = 0; i < nObjetoConsulta; i++){
+        kNN(G, k, objetosConsulta[i], &recallPorcentaje);
+    }
+
+    printf("\n\tresultados finales\n");
     for(i = 0; i < nPorcentaje; i++){
+        printf(" %d.- %d promedio recall %f\n",i, porcentaje[i], recallPorcentaje[i]/nObjetoConsulta);
+    }
+ /*   for(i = 0; i < nPorcentaje; i++){
 
         sumaRecall = 0;
 
@@ -202,7 +210,7 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
         printf("\t %d Promedio recall %f\n", porcentaje[i], sumaRecall/nObjetoConsulta);
     }
-
+*/
     free(G -> sketches);
     free(G -> pivots);
     free(G);
@@ -214,26 +222,26 @@ Index build (char *dbname, int n, int *argc, char ***argv) {
 
 void seleccionaPivotes(ssss* N){
 
-    printf("\n\t entro a selecciona pivotes");
+    //printf("\n\t entro a selecciona pivotes");
     int i = 0;
     int j = 0;
     int tArregloPivotes = 1500;
     int encontrados=0;
     int temp = 0;
 
-    printf("\n\t 1");
+    //printf("\n\t 1");
     Obj *arregloPivotes; //arreglo de objetos pivotes
 
-    printf("\n\t 2");
+    //printf("\n\t 2");
     float m = 0;
     float alfa = 0.4;
     float mAlfa = 0;
 
-    printf("\n\t 3");
+    //printf("\n\t 3");
     Tdist d = 0;
-    printf("\n\t 4");
+    //printf("\n\t 4");
     m = calculaM(N -> nBaseDatos);
-    printf("\n\t salgo calcula m");
+    //printf("\n\t salgo calcula m");
     mAlfa = m * alfa;
 
     arregloPivotes = (Obj*)malloc(sizeof(Obj) * tArregloPivotes);
@@ -242,8 +250,8 @@ void seleccionaPivotes(ssss* N){
     encontrados = 1;
 
     for(i = 1; i <= N -> nBaseDatos; i++){
-        if(i < 100)
-            printf("\n\t encontrados = %i i = %d", encontrados, i );
+        //if(i < 100)
+        //    printf("\n\t encontrados = %i i = %d", encontrados, i );
         for(j = 0; j < encontrados; j++){
             d = distance( i, arregloPivotes[j]);
             if( d >= mAlfa){
@@ -260,7 +268,7 @@ void seleccionaPivotes(ssss* N){
             i = N ->nBaseDatos + 1; //para que rompa el ciclo
     }
 
-    printf("\nencontrados %d",encontrados);
+    //printf("\nencontrados %d",encontrados);
 
     for(i = 0; i < N -> nHiperPlanos; i++){
         N -> pivots[i].po1 = arregloPivotes[rand() % encontrados];
@@ -273,7 +281,7 @@ void seleccionaPivotes(ssss* N){
 
 
 float calculaM(int nBD){
-    printf("\n\t entro a calcula m");
+    //printf("\n\t entro a calcula m");
     float dLejana=0;
 
     int iteraciones = 4000;
@@ -332,28 +340,30 @@ void muestraPivotes(ssss* N){
 }
 
 
-float kNN(ssss* S, int k, int porcentaje, Obj q){
+void kNN(ssss* S, int k, Obj q, float* recallPorcentaje){
 
     consulta *distanciaHamming = NULL;
 
     consultaReal* distanciaRealAprox = NULL;
     consultaReal *distanciaReal = NULL;
 
-    int kPorcentaje;
-    int i;
+    int kPorcentaje = 0;
+    int i = 0;
     int rep;
     int interseccion = 0;
     int objetivo = 0;
+    int porcentaje[] = {1, 3, 5, 7, 9};
+    int nPorcentaje = 5;
 
-    int *resultado;
+    int *resultado = NULL;
     int *kCandidatosAprox = NULL;
     int *kCandidatosReal = NULL;
 
-    float recall;
+    float recall = 0;
 
     sketchQ sQ;
 
-    Tdist dist;
+    Tdist dist = 0;
 
     generaSketch( &sQ, q, S -> pivots, S -> nHiperPlanos);
 
@@ -399,42 +409,51 @@ float kNN(ssss* S, int k, int porcentaje, Obj q){
 
     qsort( distanciaHamming, S -> nBaseDatos, sizeof( consulta ) , cmpfunc);
 
-    kPorcentaje = porcentaje * (S -> nBaseDatos / 100) ;
-
-    distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
-    workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
-    qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
+    int a = 0;
 
     distanciaReal = ( consultaReal* ) malloc( sizeof( consultaReal ) * S -> nBaseDatos);
     calculaDistanciaReal(distanciaReal, S -> nBaseDatos, q);
     qsort( distanciaReal, S -> nBaseDatos, sizeof( consultaReal ) , cmpfuncFloat);
 
-    kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
-    kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
+    for (a = 0; a < nPorcentaje; a++) {
+        kPorcentaje = porcentaje[a] * (S -> nBaseDatos / 100) ;
 
-    calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
+        distanciaRealAprox = ( consultaReal* ) malloc( sizeof( consultaReal ) * kPorcentaje );
+        workload(kPorcentaje, q, distanciaRealAprox, distanciaHamming);
+        qsort( distanciaRealAprox, kPorcentaje, sizeof( consultaReal ) , cmpfuncFloat);
 
-    qsort( kCandidatosReal, k, sizeof( int ) , compara);
+        kCandidatosAprox = ( int* ) malloc( sizeof( int ) * k);
+        kCandidatosReal = ( int* ) malloc( sizeof( int ) * k);
 
-    for(i = 0; i < k; i++){
+        calculaCandidatos(distanciaReal, distanciaRealAprox, kCandidatosAprox, kCandidatosReal, k);
+        qsort( kCandidatosReal, k, sizeof( int ) , compara);
 
-        objetivo = kCandidatosAprox[i];
-        resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
+        interseccion = 0;
+        resultado = 0;
+        recall = 0;
 
-        if( resultado != NULL){
-            interseccion++;
+        for(i = 0; i < k; i++){
+
+            objetivo = kCandidatosAprox[i];
+            resultado = (int*) bsearch( &objetivo, kCandidatosReal, k, sizeof( int ), compara);
+
+            if( resultado != NULL){
+                interseccion++;
+            }
         }
+
+        recall = ((float) interseccion / (float) k) * 100;
+        recallPorcentaje[a]=recallPorcentaje[a] + recall;
+
+        free(distanciaRealAprox)
+        free(kCandidatosAprox);
+        free(kCandidatosReal);
     }
 
-    recall = ((float) interseccion / (float) k) * 100;
-
-    free(distanciaRealAprox)
-    free(kCandidatosAprox);
-    free(kCandidatosReal);
     free(distanciaHamming);
     free(distanciaReal);
 
-    return  recall;
+
 }
 
 
