@@ -99,7 +99,7 @@ typedef struct{
     unsigned int *sketchesPart66; // 2112 bits
     int nHiperPlanos; //numero de hiperplanos, longitud del sketch
     char *descr; // nombre de la BD
-    int nBaseDatos; //tamaño de la base de datos
+    int n; //tamaño de la base de datos
 
 }rbbf1;
 
@@ -882,17 +882,18 @@ void seleccionaPivotes(rbbf1* N){
     srand( time( NULL ) );
 
     for(i = 0; i < N -> nHiperPlanos; i++){
-        N -> pivots[i].po1 = rand() %N -> nBaseDatos + 1;
-        N -> pivots[i].po2 = rand() %N -> nBaseDatos +1;
+        N -> pivots[i].po1 = rand() %N -> n + 1;
+        N -> pivots[i].po2 = rand() %N -> n +1;
     }
 
 }
 
-/*void inicializaRecallPorcentaje(float* recallPorcentaje, int nPorcentajes){
 
-    int i = 0;
+void iniciaSumaRecall(float* sumaRecall, int n){
 
-    for(i = 0; i < nPorcentajes; i++){
-        recallPorcentaje[i] = 0;
+    int i;
+    for(i = 0; i < n; i++){
+        sumaRecall[i]=0;
     }
-}*/
+
+}
